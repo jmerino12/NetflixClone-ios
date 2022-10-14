@@ -12,14 +12,28 @@ class CollectionViewTableViewCell: UITableViewCell {
     static let identifier = "CollectionViewTableViewCell"
     private var movies: [Movie] = [Movie]()
     var delegate: NavigationToDetailProtocol?
-    
-    private var collectionView: UICollectionView?
+
+    private var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(PosterTableViewCell.self, forCellWithReuseIdentifier: PosterTableViewCell.identifier)
+        return collectionView
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .black
-        configureCollectionView()
-        setCollectionConstrainst()
+        contentView.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -27,35 +41,10 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     
-    
-    func configureCollectionView()  {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 140, height: 200)
-        layout.scrollDirection = .horizontal
-        
-        collectionView = UICollectionView(frame: .zero , collectionViewLayout: layout)
-        collectionView?.backgroundColor = .black
-        collectionView?.register(PosterTableViewCell.self, forCellWithReuseIdentifier: PosterTableViewCell.identifier)
-        collectionView?.showsHorizontalScrollIndicator = false
-        contentView.addSubview(collectionView!)
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
+   override func layoutSubviews() {
+       super.layoutSubviews()
+       collectionView.frame = contentView.bounds
     }
-    
-    func setCollectionConstrainst() {
-        
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
-        collectionView?.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        collectionView?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        collectionView?.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-    }
-    
-   /* override func layoutSubviews() {
-        super.layoutSubviews()
-        collectionView?.frame = contentView.bounds
-    }*/
     
     func configureTitles(movies: [Movie]) {
         self.movies = movies
@@ -79,7 +68,12 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         print(movies[indexPath.row])
         delegate?.navigateToDetail(movie: movies[indexPath.row])
     }
-    
-    
-    
 }
+extension CollectionViewTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 140, height: 200)
+    }
+}
+
+

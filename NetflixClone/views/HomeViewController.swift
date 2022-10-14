@@ -15,18 +15,50 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
     private let widthScreen = UIScreen.main.bounds.width
     private let heigthScreen = UIScreen.main.bounds.height
+    private let HEIGHT_POSTER: CGFloat = 200
+    private let HEIGHT_HEADER_SECTION: CGFloat = 40
     // MARK: - PROPERTIES VIEW
-    let scrollView = UIScrollView(frame: .zero)
-    let scrollContainer = UIStackView()
-    // ----------
-    let contentImageHeader = UIView()
-    let imageHeader = UIImageView()
-    let tableView = UITableView(frame: .zero, style: .grouped)
+
+    let scrollView: UIScrollView = {
+        let myScrollView = UIScrollView()
+        myScrollView.translatesAutoresizingMaskIntoConstraints = false
+        myScrollView.contentInsetAdjustmentBehavior = .never
+        myScrollView.backgroundColor = .black
+        return myScrollView
+    }()
+    var scrollContainer : UIStackView = {
+        let mystack = UIStackView()
+        mystack.translatesAutoresizingMaskIntoConstraints = false
+        mystack.spacing = 10
+        mystack.axis = .vertical
+        mystack.backgroundColor = .black
+        
+        return mystack
+    }()
+    let imageHeader : UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named:"alcarras")
+        image.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.5).isActive = true
+        image.backgroundColor = .black
+        return image
+    }()
     
-    let titleLabel =  UILabel()
+
+    let myTable : UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.isScrollEnabled = false
+        table.backgroundColor = .black
+        table.separatorStyle = UITableViewCell.SeparatorStyle.none
+        table.rowHeight = 200
     
-    let HEIGHT_POSTER: CGFloat = 200
-    let HEIGHT_HEADER_SECTION: CGFloat = 40
+        return table
+    }()
+    
+    
+    
+
     
     let sectionTitle:  [String] = ["Trending Movies", " Upcoming", "Popular", "Top Rate"]
 
@@ -35,55 +67,51 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         
         super.viewDidLoad()
         view.backgroundColor = .black
+    
         setupScrollView()
-        setupConstraintsScrollView()
+        setContraintsScrollView()
         setupScrollViewContainer()
-        
-        setupScrollViewConstraintsContainer()
-        
-        setupContentImageHeader()
-        setupConstraintsImageHeader()
-        
-        setupImage()
-        setupImageConstraints()
+        setContrainstsScrollViewContainer()
         
         setupTableView()
-        setupConstrainstTableView()
-        
-        setupTitleMovie()
         
         AddGradient()
+
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .never
-       
         view.addSubview(scrollView)
-    
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    func setupConstraintsScrollView() {
-        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    func setContraintsScrollView() {
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
     }
     
     func setupScrollViewContainer() {
-        scrollContainer.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(scrollContainer)
-        scrollContainer.axis = .vertical
+        scrollContainer.addArrangedSubview(imageHeader)
+        scrollContainer.addArrangedSubview(myTable)
+
     }
     
-    func setupScrollViewConstraintsContainer(){
-        scrollContainer.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+    func setContrainstsScrollViewContainer(){
         scrollContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        scrollContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        
+        scrollContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant:  -90).isActive = true
+        scrollContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        scrollContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
     
+    func setupTableView() {
+        myTable.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
+        myTable.dataSource = self
+        myTable.delegate = self
+    }
+    
+
     func AddGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -93,59 +121,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         gradientLayer.frame = CGRect(x: 0, y: 0, width: widthScreen, height: heigthScreen / 1.5)
         imageHeader.layer.addSublayer(gradientLayer)
     }
-
- 
-    func setupContentImageHeader() {
-        contentImageHeader.translatesAutoresizingMaskIntoConstraints = false
-        scrollContainer.addArrangedSubview(contentImageHeader)
-    }
-    
-    func setupConstraintsImageHeader() {
-        contentImageHeader.heightAnchor.constraint(equalToConstant:heigthScreen / 1.5).isActive = true
-        contentImageHeader.widthAnchor.constraint(equalTo: scrollContainer.widthAnchor).isActive = true
-        contentImageHeader.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 0).isActive = true
-    }
-    
-    
-    func setupImage()  {
-        imageHeader.translatesAutoresizingMaskIntoConstraints = false
-        imageHeader.image = UIImage(named:"alcarras")
-        
-        contentImageHeader.addSubview(imageHeader)
-    }
-    
-    func setupImageConstraints()  {
-        imageHeader.heightAnchor.constraint(equalTo: contentImageHeader.heightAnchor, constant: 0).isActive = true
-        imageHeader.widthAnchor.constraint(equalTo: contentImageHeader.widthAnchor, constant: 0).isActive = true
-        imageHeader.topAnchor.constraint(equalTo: contentImageHeader.topAnchor, constant: 0).isActive = true
-        imageHeader.trailingAnchor.constraint(equalTo: contentImageHeader.trailingAnchor, constant: 0).isActive = true
-        imageHeader.leadingAnchor.constraint(equalTo: contentImageHeader.leadingAnchor, constant: 0).isActive = true
-    }
-    
-    
-    func setupTableView() {
-        scrollContainer.addArrangedSubview(tableView)
-    
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.isScrollEnabled = false
-        tableView.backgroundColor = .black
-        
-        tableView.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
-        
-    }
-    
-    func setupConstrainstTableView() {
-        let num = numberOfSections(in: tableView)
-        let heightAnchor = (CGFloat(num) * (HEIGHT_POSTER + HEIGHT_HEADER_SECTION + 40)) + contentImageHeader.frame.height
-        
-        tableView.centerXAnchor.constraint(equalTo: scrollContainer.centerXAnchor).isActive = true
-        tableView.widthAnchor.constraint(equalTo: scrollContainer.widthAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: contentImageHeader.bottomAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
-        
-    }
     
     func navigateToDetail(movie: Movie) {
         let detailScreen = DetailMovieViewController()
@@ -154,12 +129,15 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         self.present(detailScreen, animated: true, completion: nil)
     }
 
-    func setupTitleMovie(){
-        imageHeader.addSubview(titleLabel)
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let num = numberOfSections(in: myTable)
+        let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION) * CGFloat(num)
+        myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
     }
 
 }
-
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -174,6 +152,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
         cell.delegate = self
+        cell.separatorInset = .zero
         switch indexPath.section {
         case 0:
             cell.configureTitles(movies: trendingMovies)
@@ -197,6 +176,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return HEIGHT_HEADER_SECTION
     }
     
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitle[section]
     }
@@ -204,9 +184,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        header.contentView.backgroundColor = .black
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
-        header.textLabel?.textColor = .white
+            header.textLabel?.textColor = .white
     }
-        
-
+    
+    
 }
