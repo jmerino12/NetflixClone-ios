@@ -18,6 +18,10 @@
 		B410601928EF270800695C42 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B410601828EF270800695C42 /* DownloadViewController.swift */; };
 		B42BF77628F5C475003A89DF /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BF77428F5C475003A89DF /* DetailMovieViewController.swift */; };
 		B42BF77728F5C475003A89DF /* DetailMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B42BF77528F5C475003A89DF /* DetailMovieViewController.xib */; };
+		B43C7F7329020AC5005A893C /* Infraestructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43C7F7229020AC5005A893C /* Infraestructure.framework */; };
+		B43C7F7429020AC5005A893C /* Infraestructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B43C7F7229020AC5005A893C /* Infraestructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B43C7F7729020AC8005A893C /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43C7F7629020AC8005A893C /* Domain.framework */; };
+		B43C7F7829020AC8005A893C /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B43C7F7629020AC8005A893C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4A0F6EF28F45E3A003F3E7E /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6EE28F45E3A003F3E7E /* CollectionViewTableViewCell.swift */; };
 		B4A0F6F128F4C61E003F3E7E /* PosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6F028F4C61E003F3E7E /* PosterTableViewCell.swift */; };
 		B4A0F6F428F4FD9D003F3E7E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B4A0F6F328F4FD9D003F3E7E /* data.json */; };
@@ -25,6 +29,21 @@
 		B4A0F6F928F50308003F3E7E /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6F828F50308003F3E7E /* MovieModel.swift */; };
 		B4A0F6FC28F503FB003F3E7E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6FB28F503FB003F3E7E /* Constant.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B43C7F7529020AC5005A893C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B43C7F7829020AC8005A893C /* Domain.framework in Embed Frameworks */,
+				B43C7F7429020AC5005A893C /* Infraestructure.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B4105FF828EF250700695C42 /* NetflixClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +59,8 @@
 		B410601828EF270800695C42 /* DownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		B42BF77428F5C475003A89DF /* DetailMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		B42BF77528F5C475003A89DF /* DetailMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMovieViewController.xib; sourceTree = "<group>"; };
+		B43C7F7229020AC5005A893C /* Infraestructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Infraestructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B43C7F7629020AC8005A893C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A0F6EE28F45E3A003F3E7E /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		B4A0F6F028F4C61E003F3E7E /* PosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterTableViewCell.swift; sourceTree = "<group>"; };
 		B4A0F6F328F4FD9D003F3E7E /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -53,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43C7F7729020AC8005A893C /* Domain.framework in Frameworks */,
+				B43C7F7329020AC5005A893C /* Infraestructure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +87,7 @@
 			children = (
 				B4105FFA28EF250700695C42 /* NetflixClone */,
 				B4105FF928EF250700695C42 /* Products */,
+				B43C7F7129020AC5005A893C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +139,15 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		B43C7F7129020AC5005A893C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B43C7F7629020AC8005A893C /* Domain.framework */,
+				B43C7F7229020AC5005A893C /* Infraestructure.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B4A0F6F228F4FD89003F3E7E /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +183,7 @@
 				B4105FF428EF250700695C42 /* Sources */,
 				B4105FF528EF250700695C42 /* Frameworks */,
 				B4105FF628EF250700695C42 /* Resources */,
+				B43C7F7529020AC5005A893C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -366,6 +400,7 @@
 				DEVELOPMENT_TEAM = ZF7B3Q8YLK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NetflixClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -397,6 +432,7 @@
 				DEVELOPMENT_TEAM = ZF7B3Q8YLK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NetflixClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

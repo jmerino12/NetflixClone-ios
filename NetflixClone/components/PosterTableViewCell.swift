@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Domain
 
 class PosterTableViewCell: UICollectionViewCell {
 
     static let identifier = "PosterTableViewCell"
-    var movie: Movie?
+    var movie: Domain.Movie?
     let imagePoster = UIImageView()
     
     override init(frame: CGRect) {
@@ -30,7 +31,8 @@ class PosterTableViewCell: UICollectionViewCell {
     }
     
     func loadView() {
-        imagePoster.image = UIImage(named: movie?.backdrop_path ?? "")
+        imagePoster.image = UIImage(named: movie?.poster_path ?? "")
+        imagePoster.backgroundColor = .red
     }
     
     

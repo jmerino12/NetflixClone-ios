@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Domain
+import Infraestructure
 
 protocol NavigationToDetailProtocol {
-    func navigateToDetail(movie: Movie)
+    func navigateToDetail(movie: Domain.Movie?)
 }
 
 class HomeViewController: UIViewController, NavigationToDetailProtocol {
@@ -17,6 +19,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let heigthScreen = UIScreen.main.bounds.height
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
+    private let getMovie: MovieApiRepository = MovieApiRepositoryImpl()
     // MARK: - PROPERTIES VIEW
 
     let scrollView: UIScrollView = {
@@ -122,7 +125,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         imageHeader.layer.addSublayer(gradientLayer)
     }
     
-    func navigateToDetail(movie: Movie) {
+    func navigateToDetail(movie: Domain.Movie?) {
         let detailScreen = DetailMovieViewController()
         detailScreen.movie = movie
         detailScreen.modalPresentationStyle = .popover
@@ -155,15 +158,13 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.separatorInset = .zero
         switch indexPath.section {
         case 0:
-            cell.configureTitles(movies: trendingMovies)
-        case 1:
-            cell.configureTitles(movies: moviesUpComing)
-        case 2:
-            cell.configureTitles(movies: popularMovies)
-        case 3:
-            cell.configureTitles(movies: topRate)
+            getMovie.getUpcomingMovies { movies in
+                cell.configureTitles(movies: movies!)
+            }
         default:
-            cell.configureTitles(movies: topRate)
+            getMovie.getUpcomingMovies { movies in
+                cell.configureTitles(movies: movies!)
+            }
         }
         cell.backgroundColor = .black
         return cell

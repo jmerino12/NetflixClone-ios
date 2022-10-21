@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Domain
 
 class CollectionViewTableViewCell: UITableViewCell {
     
     static let identifier = "CollectionViewTableViewCell"
-    private var movies: [Movie] = [Movie]()
+    private var movies: [Domain.Movie] = [Domain.Movie]()
     var delegate: NavigationToDetailProtocol?
 
     private var collectionView: UICollectionView = {
@@ -46,8 +47,11 @@ class CollectionViewTableViewCell: UITableViewCell {
        collectionView.frame = contentView.bounds
     }
     
-    func configureTitles(movies: [Movie]) {
+    func configureTitles(movies: [Domain.Movie]) {
         self.movies = movies
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
 }
@@ -61,11 +65,11 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(self.movies.count)
         return self.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(movies[indexPath.row])
         delegate?.navigateToDetail(movie: movies[indexPath.row])
     }
 }

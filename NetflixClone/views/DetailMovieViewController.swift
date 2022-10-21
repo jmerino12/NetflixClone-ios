@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Domain
 
 class DetailMovieViewController: UIViewController {    
-    var movie: Movie?
+    var movie: Domain.Movie?
 
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var buttonPlay: UIButton!
