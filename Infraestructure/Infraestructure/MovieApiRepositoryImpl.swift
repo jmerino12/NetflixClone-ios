@@ -27,7 +27,10 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 let myDtoMovies = movies.enumerated().map { (index, element) in
                     return movieTranslator.fromDomainToDto(movie: element)
                 }
-                completion(myDtoMovies)
+                DispatchQueue.main.async {
+                    completion(myDtoMovies)
+                }
+                
             case .failure(let myError):
                 print(myError)
             }
@@ -43,7 +46,9 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 let myDtoMovies = movies.enumerated().map { (index, element) in
                     return movieTranslator.fromDomainToDto(movie: element)
                 }
-                completion(myDtoMovies)
+                DispatchQueue.main.async {
+                    completion(myDtoMovies)
+                }
             case .failure(let myError):
                 print(myError)
             }
@@ -58,7 +63,9 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 let myDtoMovies = movies.enumerated().map { (index, element) in
                     return movieTranslator.fromDomainToDto(movie: element)
                 }
-                completion(myDtoMovies)
+                DispatchQueue.main.async {
+                    completion(myDtoMovies)
+                }
             case .failure(let myError):
                 print(myError)
             }
@@ -73,7 +80,9 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 let myDtoMovies = movies.enumerated().map { (index, element) in
                     return movieTranslator.fromDomainToDto(movie: element)
                 }
-                completion(myDtoMovies)
+                DispatchQueue.main.async {
+                    completion(myDtoMovies)
+                }
             case .failure(let myError):
                 print(myError)
             }

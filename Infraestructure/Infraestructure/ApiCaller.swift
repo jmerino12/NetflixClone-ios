@@ -41,7 +41,6 @@ public struct APICaller {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(MovieResult.self, from: MovieData)
-            
             return decodedData.results
         } catch  {
             print(error)

@@ -34,10 +34,13 @@ class PosterTableViewCell: UICollectionViewCell {
         guard let movieUrl =  movie?.poster_path else { return }
         imagePoster.kf.indicatorType = .activity
         imagePoster.backgroundColor = .white
-        imagePoster.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/\(movieUrl)"), options: [
-            .transition(.fade(1)),
-            ]
-        )
+        DispatchQueue.main.async {
+            self.imagePoster.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/\(movieUrl)"), options: [
+                .transition(.fade(1)),
+                ]
+            )
+        }
+    
     }
     
     

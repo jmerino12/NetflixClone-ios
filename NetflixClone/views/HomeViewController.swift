@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         return table
     }()
     
-    let sectionTitle:  [String] = ["Latest Movie", " Upcoming", "Popular", "Top Rate"]
+    let sectionTitle:  [String] = [NSLocalizedString("lastetMovie", comment: ""), NSLocalizedString("upcoming", comment: ""), NSLocalizedString("popular", comment: ""), NSLocalizedString("topRate", comment: "")]
 
  
     override func viewDidLoad() {
@@ -135,7 +135,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION ) * CGFloat(num)
         print(heightAnchor)
         //myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
-        myTable.heightAnchor.constraint(equalToConstant: myTable.contentSize.height).isActive = true
+        myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
     }
     
 }

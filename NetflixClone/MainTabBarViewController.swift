@@ -30,10 +30,10 @@ class MainTabBarViewController: UITabBarController {
         let downloadController = UINavigationController(rootViewController: DownloadViewController())
         
         
-        homeViewController.title = "Inicio"
-        newAndPopularController.title = "Nuevo y popular"
-        toLaugthViewController.title = "Para reir"
-        downloadController.title = "Descargas"
+        homeViewController.title = NSLocalizedString("home", comment: "")
+        newAndPopularController.title = NSLocalizedString("newAndPopular", comment: "")
+        toLaugthViewController.title = NSLocalizedString("toLaugh", comment: "")
+        downloadController.title = NSLocalizedString("downloads", comment: "")
         
         homeViewController.tabBarItem.image = UIImage(systemName: "house")
         newAndPopularController.tabBarItem.image = UIImage(systemName: "play.circle.fill")

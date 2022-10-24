@@ -29,6 +29,7 @@
 		B4A0F6F628F50156003F3E7E /* CodableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6F528F50155003F3E7E /* CodableBundleExtension.swift */; };
 		B4A0F6F928F50308003F3E7E /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6F828F50308003F3E7E /* MovieModel.swift */; };
 		B4A0F6FC28F503FB003F3E7E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6FB28F503FB003F3E7E /* Constant.swift */; };
+		B4B802902906DD8900B76CED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4B802922906DD8900B76CED /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +71,8 @@
 		B4A0F6F528F50155003F3E7E /* CodableBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableBundleExtension.swift; sourceTree = "<group>"; };
 		B4A0F6F828F50308003F3E7E /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		B4A0F6FB28F503FB003F3E7E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		B4B802912906DD8900B76CED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B4B802932906DDBB00B76CED /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ED17D447B2CB162669E19D68 /* Pods-NetflixClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetflixClone.debug.xcconfig"; path = "Target Support Files/Pods-NetflixClone/Pods-NetflixClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +96,6 @@
 				ED17D447B2CB162669E19D68 /* Pods-NetflixClone.debug.xcconfig */,
 				3B890230AC4D6CC3EE25C6F6 /* Pods-NetflixClone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -129,6 +131,7 @@
 				B410600428EF251100695C42 /* Assets.xcassets */,
 				B410600928EF251100695C42 /* Info.plist */,
 				B410600628EF251100695C42 /* LaunchScreen.storyboard */,
+				B4B802922906DD8900B76CED /* Localizable.strings */,
 			);
 			path = NetflixClone;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = B4105FEF28EF250700695C42;
 			productRefGroup = B4105FF928EF250700695C42 /* Products */;
@@ -251,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B802902906DD8900B76CED /* Localizable.strings in Resources */,
 				B42BF77728F5C475003A89DF /* DetailMovieViewController.xib in Resources */,
 				B410600828EF251100695C42 /* LaunchScreen.storyboard in Resources */,
 				B4A0F6F428F4FD9D003F3E7E /* data.json in Resources */,
@@ -334,6 +339,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		B4B802922906DD8900B76CED /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4B802912906DD8900B76CED /* en */,
+				B4B802932906DDBB00B76CED /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -341,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -401,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

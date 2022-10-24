@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  NetflixClone
+
+  Created by Jonathan Eduardo Meriño Bolívar - Ceiba Software on 24/10/22.
+  
+*/
+
+//TAB BAR
+"home" = "Home";
+"newAndPopular" = "New and Popular";
+"toLaugh" = "To laugh";
+"downloads" = "Downloads";
+//
+
+
+"lastetMovie" = "Latest Movie";
+"upcoming" = "Upcoming";
+"popular" = "Popular";
+"topRate" = "Top Rate";
