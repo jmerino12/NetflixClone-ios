@@ -15,7 +15,7 @@ struct Constanst {
 
 public struct APICaller {
 
-    func getUpcommingMovies(with urlString: String, completed: @escaping (Result<[Movie], Error>) -> Void){
+    func fetchData(with urlString: String, completed: @escaping (Result<[Movie], Error>) -> Void){
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -41,6 +41,7 @@ public struct APICaller {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(MovieResult.self, from: MovieData)
+            
             return decodedData.results
         } catch  {
             print(error)

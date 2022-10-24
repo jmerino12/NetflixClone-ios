@@ -9,7 +9,7 @@ import Foundation
 
 public struct Movie {
     public let adult: Bool
-    public let backdrop_path: String
+    public let backdrop_path: String?
     public let genre_ids: [Int]
     public let id: Int
     public let original_language: String
@@ -23,7 +23,7 @@ public struct Movie {
     public let vote_average: Float
     public let vote_count: Int
     
-    public init(adult: Bool, backdrop_path: String, genre_ids: [Int], id: Int, original_language: String, original_title: String, overview: String, popularity: Double, poster_path: String, release_date: String, title: String, video: Bool, vote_average: Float, vote_count: Int) {
+    public init(adult: Bool, backdrop_path: String?, genre_ids: [Int], id: Int, original_language: String, original_title: String, overview: String, popularity: Double, poster_path: String, release_date: String, title: String, video: Bool, vote_average: Float, vote_count: Int) {
         self.adult = adult
         self.backdrop_path = backdrop_path
         self.genre_ids = genre_ids

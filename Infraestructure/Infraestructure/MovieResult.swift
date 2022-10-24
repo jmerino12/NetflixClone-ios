@@ -13,7 +13,7 @@ struct Dates: Codable {
 }
 
 struct MovieResult: Codable {
-    let dates: Dates
+    let dates: Dates?
     let page: Int
     let results: [Movie]
     let total_pages, total_results: Int
@@ -21,7 +21,7 @@ struct MovieResult: Codable {
 
 public struct Movie: Codable {
     let adult: Bool
-    let backdrop_path: String
+    let backdrop_path: String?
     let genre_ids: [Int]
     let id: Int
     let original_language: String

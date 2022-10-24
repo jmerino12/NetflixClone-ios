@@ -34,6 +34,13 @@ class DetailMovieViewController: UIViewController {
     func loadInfo()  {
         titleMovie.text = movie?.title
         descriptionMovie.text = movie?.overview
+        guard let movieUrl =  movie?.backdrop_path else { return }
+        posterImage.kf.indicatorType = .activity
+        posterImage.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w500/\(movieUrl)"), options: [
+            .transition(.fade(1)),
+        
+            ]
+        )
         posterImage.image = UIImage(named: movie?.backdrop_path ?? "")
     }
     /*

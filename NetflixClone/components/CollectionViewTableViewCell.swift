@@ -19,6 +19,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PosterTableViewCell.self, forCellWithReuseIdentifier: PosterTableViewCell.identifier)
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
@@ -28,6 +29,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .black
         
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +51,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     func configureTitles(movies: [Domain.Movie]) {
         self.movies = movies
-        DispatchQueue.main.async {
+       DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
@@ -65,7 +67,6 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.movies.count)
         return self.movies.count
     }
     

@@ -10,8 +10,9 @@ import Foundation
 
 
 public class MovieApiRepositoryImpl: MovieApiRepository {
+ 
     
-    
+
     let apiCaller: APICaller
     
     public init() {
@@ -20,7 +21,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
     
     public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
-        apiCaller.getUpcommingMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)") { result in
+        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)") { result in
             switch result{
             case .success(let movies):
                 let myDtoMovies = movies.enumerated().map { (index, element) in
@@ -33,6 +34,52 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
         }
         
     }
+    
+    public func getTopRateMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
+        let movieTranslator = MovieTranslator()
+        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)") { result in
+            switch result{
+            case .success(let movies):
+                let myDtoMovies = movies.enumerated().map { (index, element) in
+                    return movieTranslator.fromDomainToDto(movie: element)
+                }
+                completion(myDtoMovies)
+            case .failure(let myError):
+                print(myError)
+            }
+        }
+    }
+    
+    public func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
+        let movieTranslator = MovieTranslator()
+        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)") { result in
+            switch result{
+            case .success(let movies):
+                let myDtoMovies = movies.enumerated().map { (index, element) in
+                    return movieTranslator.fromDomainToDto(movie: element)
+                }
+                completion(myDtoMovies)
+            case .failure(let myError):
+                print(myError)
+            }
+        }
+    }
+    
+    public func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
+        let movieTranslator = MovieTranslator()
+        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&page=2") { result in
+            switch result{
+            case .success(let movies):
+                let myDtoMovies = movies.enumerated().map { (index, element) in
+                    return movieTranslator.fromDomainToDto(movie: element)
+                }
+                completion(myDtoMovies)
+            case .failure(let myError):
+                print(myError)
+            }
+        }
+    }
+    
     
 }
 

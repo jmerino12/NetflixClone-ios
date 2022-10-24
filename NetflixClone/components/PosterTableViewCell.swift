@@ -7,6 +7,7 @@
 
 import UIKit
 import Domain
+import Kingfisher
 
 class PosterTableViewCell: UICollectionViewCell {
 
@@ -16,7 +17,6 @@ class PosterTableViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .black
         contentView.addSubview(imagePoster)
     }
     
@@ -31,8 +31,13 @@ class PosterTableViewCell: UICollectionViewCell {
     }
     
     func loadView() {
-        imagePoster.image = UIImage(named: movie?.poster_path ?? "")
-        imagePoster.backgroundColor = .red
+        guard let movieUrl =  movie?.poster_path else { return }
+        imagePoster.kf.indicatorType = .activity
+        imagePoster.backgroundColor = .white
+        imagePoster.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/\(movieUrl)"), options: [
+            .transition(.fade(1)),
+            ]
+        )
     }
     
     

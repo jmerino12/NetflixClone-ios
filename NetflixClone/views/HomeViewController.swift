@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     var scrollContainer : UIStackView = {
         let mystack = UIStackView()
         mystack.translatesAutoresizingMaskIntoConstraints = false
-        mystack.spacing = 10
+        mystack.spacing = 20
         mystack.axis = .vertical
         mystack.backgroundColor = .black
         
@@ -49,21 +49,16 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
 
     let myTable : UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.isScrollEnabled = false
-        table.backgroundColor = .black
-        table.separatorStyle = UITableViewCell.SeparatorStyle.none
+        table.backgroundColor = .white
         table.rowHeight = 200
-    
+        table.separatorStyle = UITableViewCell.SeparatorStyle.none
         return table
     }()
     
-    
-    
-
-    
-    let sectionTitle:  [String] = ["Trending Movies", " Upcoming", "Popular", "Top Rate"]
+    let sectionTitle:  [String] = ["Latest Movie", " Upcoming", "Popular", "Top Rate"]
 
  
     override func viewDidLoad() {
@@ -112,6 +107,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         myTable.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
         myTable.dataSource = self
         myTable.delegate = self
+
     }
     
 
@@ -136,10 +132,12 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let num = numberOfSections(in: myTable)
-        let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION) * CGFloat(num)
-        myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
+        let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION ) * CGFloat(num)
+        print(heightAnchor)
+        //myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
+        myTable.heightAnchor.constraint(equalToConstant: myTable.contentSize.height).isActive = true
     }
-
+    
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -155,10 +153,25 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
         cell.delegate = self
-        cell.separatorInset = .zero
+        cell.clipsToBounds = true
+        print(cell.frame.height)
         switch indexPath.section {
         case 0:
+            getMovie.getLatestMovies { movies in
+                cell.configureTitles(movies: movies!)
+            }
+            
+        case 1:
             getMovie.getUpcomingMovies { movies in
+                cell.configureTitles(movies: movies!)
+            }
+            
+        case 2:
+            getMovie.getPopularMovies { movies in
+                cell.configureTitles(movies: movies!)
+            }
+        case 3:
+            getMovie.getTopRateMovies { movies in
                 cell.configureTitles(movies: movies!)
             }
         default:
@@ -166,7 +179,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configureTitles(movies: movies!)
             }
         }
-        cell.backgroundColor = .black
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -189,6 +201,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
             header.textLabel?.textColor = .white
     }
-    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
     
 }
