@@ -19,7 +19,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let heigthScreen = UIScreen.main.bounds.height
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
-    private let getMovie: MovieApiRepository = MovieApiRepositoryImpl()
+    private let movieService: MovieService = MovieService(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))
+    
     // MARK: - PROPERTIES VIEW
 
     let scrollView: UIScrollView = {
@@ -133,7 +134,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         super.viewDidLayoutSubviews()
         let num = numberOfSections(in: myTable)
         let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION ) * CGFloat(num)
-        print(heightAnchor)
+        //print(heightAnchor)
         //myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
         myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
     }
@@ -154,29 +155,28 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
         cell.delegate = self
         cell.clipsToBounds = true
-        print(cell.frame.height)
         switch indexPath.section {
         case 0:
-            getMovie.getLatestMovies { movies in
-                cell.configureTitles(movies: movies!)
+            movieService.getLatestMovies{ result in
+                cell.configureTitles(movies: result!)
             }
             
         case 1:
-            getMovie.getUpcomingMovies { movies in
-                cell.configureTitles(movies: movies!)
+            movieService.getUpcomingMovies { result in
+                cell.configureTitles(movies: result!)
             }
-            
+         
         case 2:
-            getMovie.getPopularMovies { movies in
-                cell.configureTitles(movies: movies!)
+            movieService.getPopularMovies{ result in
+                cell.configureTitles(movies: result!)
             }
         case 3:
-            getMovie.getTopRateMovies { movies in
-                cell.configureTitles(movies: movies!)
+            movieService.getTopRateMovies{ result in
+                cell.configureTitles(movies: result!)
             }
         default:
-            getMovie.getUpcomingMovies { movies in
-                cell.configureTitles(movies: movies!)
+            movieService.getUpcomingMovies { result in
+                cell.configureTitles(movies: result!)
             }
         }
         return cell

@@ -11,8 +11,6 @@ import Foundation
 
 public class MovieApiRepositoryImpl: MovieApiRepository {
  
-    
-
     let apiCaller: APICaller
     
     public init() {
@@ -25,7 +23,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
             switch result{
             case .success(let movies):
                 let myDtoMovies = movies.enumerated().map { (index, element) in
-                    return movieTranslator.fromDomainToDto(movie: element)
+                    return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
@@ -44,7 +42,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
             switch result{
             case .success(let movies):
                 let myDtoMovies = movies.enumerated().map { (index, element) in
-                    return movieTranslator.fromDomainToDto(movie: element)
+                    return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
@@ -61,7 +59,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
             switch result{
             case .success(let movies):
                 let myDtoMovies = movies.enumerated().map { (index, element) in
-                    return movieTranslator.fromDomainToDto(movie: element)
+                    return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
@@ -78,7 +76,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
             switch result{
             case .success(let movies):
                 let myDtoMovies = movies.enumerated().map { (index, element) in
-                    return movieTranslator.fromDomainToDto(movie: element)
+                    return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		42DA1392B596C8729FAA21BF /* Pods_NetflixClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2309250A61D6C14CF3559208 /* Pods_NetflixClone.framework */; };
-		B4105FFC28EF250700695C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4105FFB28EF250700695C42 /* AppDelegate.swift */; };
 		B4105FFE28EF250700695C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4105FFD28EF250700695C42 /* SceneDelegate.swift */; };
 		B410600528EF251100695C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B410600428EF251100695C42 /* Assets.xcassets */; };
 		B410600828EF251100695C42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B410600628EF251100695C42 /* LaunchScreen.storyboard */; };
@@ -30,6 +29,7 @@
 		B4A0F6F928F50308003F3E7E /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6F828F50308003F3E7E /* MovieModel.swift */; };
 		B4A0F6FC28F503FB003F3E7E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A0F6FB28F503FB003F3E7E /* Constant.swift */; };
 		B4B802902906DD8900B76CED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4B802922906DD8900B76CED /* Localizable.strings */; };
+		B4FDD5B529088E90002E3EDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4105FFB28EF250700695C42 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -320,7 +320,7 @@
 				B4A0F6F928F50308003F3E7E /* MovieModel.swift in Sources */,
 				B4A0F6FC28F503FB003F3E7E /* Constant.swift in Sources */,
 				B410601528EF26CB00695C42 /* NewAndPopularViewController.swift in Sources */,
-				B4105FFC28EF250700695C42 /* AppDelegate.swift in Sources */,
+				B4FDD5B529088E90002E3EDA /* AppDelegate.swift in Sources */,
 				B4A0F6F628F50156003F3E7E /* CodableBundleExtension.swift in Sources */,
 				B410601728EF26E800695C42 /* ToLaughViewController.swift in Sources */,
 				B410601928EF270800695C42 /* DownloadViewController.swift in Sources */,
