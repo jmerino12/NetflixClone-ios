@@ -34,6 +34,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40118EB290978D000D86716 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				B43C7F7929020B03005A893C /* Movie.swift */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
+		B40118EC290978DB00D86716 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				B43C7F7F29020D55005A893C /* MovieService.swift */,
+			);
+			name = service;
+			sourceTree = "<group>";
+		};
+		B40118ED290978E900D86716 /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B43C7F7D29020D10005A893C /* MovieApiRepository.swift */,
+				B43A41E029086E9300A877E1 /* MovieLocalRepository.swift */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
 		B43C7F3E2901FAA6005A893C = {
 			isa = PBXGroup;
 			children = (
@@ -53,11 +78,10 @@
 		B43C7F4A2901FAA6005A893C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B40118ED290978E900D86716 /* repositories */,
+				B40118EC290978DB00D86716 /* service */,
+				B40118EB290978D000D86716 /* entity */,
 				B43C7F4B2901FAA6005A893C /* Domain.h */,
-				B43C7F7929020B03005A893C /* Movie.swift */,
-				B43C7F7D29020D10005A893C /* MovieApiRepository.swift */,
-				B43C7F7F29020D55005A893C /* MovieService.swift */,
-				B43A41E029086E9300A877E1 /* MovieLocalRepository.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";

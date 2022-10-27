@@ -65,6 +65,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40118EE29097AD800D86716 /* anticorruption */ = {
+			isa = PBXGroup;
+			children = (
+				B4E57C04290333B600D2916D /* MovieTranslator.swift */,
+			);
+			path = anticorruption;
+			sourceTree = "<group>";
+		};
+		B40118EF29097AEC00D86716 /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */,
+				B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
+		B40118F029097B0F00D86716 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B40118F129097B1900D86716 /* entity */,
+				B43C7F8729021713005A893C /* ApiCaller.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		B40118F129097B1900D86716 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				B4E57C022903002400D2916D /* MovieResult.swift */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
 		B43A41A62908629000A877E1 /* database */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,13 +138,11 @@
 		B43C7F5E2901FAC1005A893C /* Infraestructure */ = {
 			isa = PBXGroup;
 			children = (
+				B40118F029097B0F00D86716 /* api */,
+				B40118EE29097AD800D86716 /* anticorruption */,
+				B40118EF29097AEC00D86716 /* repositories */,
 				B43A41A62908629000A877E1 /* database */,
 				B43C7F5F2901FAC1005A893C /* Infraestructure.h */,
-				B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */,
-				B43C7F8729021713005A893C /* ApiCaller.swift */,
-				B4E57C022903002400D2916D /* MovieResult.swift */,
-				B4E57C04290333B600D2916D /* MovieTranslator.swift */,
-				B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */,
 			);
 			path = Infraestructure;
 			sourceTree = "<group>";
