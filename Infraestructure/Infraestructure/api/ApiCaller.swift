@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 struct Constanst {
     static let baseURL = "https://api.themoviedb.org/3"
@@ -14,28 +15,20 @@ struct Constanst {
 
 
 public struct APICaller {
-
-    func fetchData(with urlString: String, completed: @escaping (Result<[Movie], Error>) -> Void){
-        if let url = URL(string: urlString){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
-                if(error != nil) {
-                    print(error ?? "")
-                    return
-                }
-                
-                if let safeData = data {
-                    if let movies = parseJSON(safeData){
-                        completed(.success(movies))
-                    }
-                }
-                
-            }
-            task.resume()
-        }
     
+    let queue = DispatchQueue(label: "getMovies", qos: .utility, attributes: .concurrent)
+    
+    public func fetchMovies(with urlString: String, completion: @escaping([Movie]?)->Void){
+        get(url: urlString) { response in
+            if (response.error != nil){
+                return
+            }
+        
+            let movies = parseJSON(response.data!)
+            completion(movies)
+        }
     }
-
+    
     
     func parseJSON(_ MovieData: Data) -> [Movie]? {
         let decoder = JSONDecoder()
@@ -47,6 +40,12 @@ public struct APICaller {
             return nil
         }
                 
+    }
+    
+    private func get(url: String, completion: @escaping(DataResponse<MovieResult, AFError>)->Void){
+        AF.request(url).responseDecodable(of: MovieResult.self, queue: queue ) { response in
+            completion(response)
+        }
     }
     
 }

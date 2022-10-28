@@ -19,71 +19,74 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
     
     public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
-        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)") { result in
-            switch result{
-            case .success(let movies):
-                let myDtoMovies = movies.enumerated().map { (index, element) in
+        apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)") { result in
+            switch result {
+            case .none:
+                debugPrint("Error")
+            case .some(let data):
+                let myDtoMovies = data.enumerated().map { (index, element) in
                     return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
                 }
-                
-            case .failure(let myError):
-                print(myError)
             }
+            
         }
         
     }
     
     public func getTopRateMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
-        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)") { result in
-            switch result{
-            case .success(let movies):
-                let myDtoMovies = movies.enumerated().map { (index, element) in
+        apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)") { result in
+            switch result {
+            case .none:
+                debugPrint("Error")
+            case .some(let data):
+                let myDtoMovies = data.enumerated().map { (index, element) in
                     return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
                 }
-            case .failure(let myError):
-                print(myError)
             }
+            
         }
     }
     
     public func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
-        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)") { result in
-            switch result{
-            case .success(let movies):
-                let myDtoMovies = movies.enumerated().map { (index, element) in
+        apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)") { result in
+            switch result {
+            case .none:
+                debugPrint("Error")
+            case .some(let data):
+                let myDtoMovies = data.enumerated().map { (index, element) in
                     return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
                 }
-            case .failure(let myError):
-                print(myError)
             }
+            
         }
     }
     
     public func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
-        apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&page=2") { result in
-            switch result{
-            case .success(let movies):
-                let myDtoMovies = movies.enumerated().map { (index, element) in
+        apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&page=2") { result in
+            switch result {
+            case .none:
+                debugPrint("Error")
+            case .some(let data):
+                let myDtoMovies = data.enumerated().map { (index, element) in
                     return movieTranslator.fromApiToDomain(movie: element)
                 }
                 DispatchQueue.main.async {
                     completion(myDtoMovies)
                 }
-            case .failure(let myError):
-                print(myError)
             }
+            
         }
     }
     
