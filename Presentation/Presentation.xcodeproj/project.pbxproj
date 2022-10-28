@@ -29,7 +29,7 @@
 		B4702A90290B5ECC00D22946 /* ToLaughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4702A8C290B5ECB00D22946 /* ToLaughViewController.swift */; };
 		B4702A93290B5EF900D22946 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4702A91290B5EF900D22946 /* DetailMovieViewController.swift */; };
 		B4702A94290B5EF900D22946 /* DetailMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4702A92290B5EF900D22946 /* DetailMovieViewController.xib */; };
-		B4702A96290B5F5600D22946 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4702A95290B5F5500D22946 /* Localizable.strings */; };
+		B4702A99290B610700D22946 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4702A9B290B610700D22946 /* Localizable.strings */; };
 		D02E70C193EE6B78525D14B6 /* Pods_Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2054F1A1A2F8A399F5D82266 /* Pods_Presentation.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +74,8 @@
 		B4702A8C290B5ECB00D22946 /* ToLaughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToLaughViewController.swift; sourceTree = "<group>"; };
 		B4702A91290B5EF900D22946 /* DetailMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		B4702A92290B5EF900D22946 /* DetailMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailMovieViewController.xib; sourceTree = "<group>"; };
-		B4702A95290B5F5500D22946 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B4702A9A290B610700D22946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B4702A9C290B611D00D22946 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +135,7 @@
 				B4702A63290B5D6700D22946 /* Assets.xcassets */,
 				B4702A65290B5D6700D22946 /* LaunchScreen.storyboard */,
 				B4702A68290B5D6700D22946 /* Info.plist */,
-				B4702A95290B5F5500D22946 /* Localizable.strings */,
+				B4702A9B290B610700D22946 /* Localizable.strings */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -241,6 +242,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = B4702A4E290B5D6500D22946;
 			productRefGroup = B4702A58290B5D6500D22946 /* Products */;
@@ -257,7 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4702A96290B5F5600D22946 /* Localizable.strings in Resources */,
+				B4702A99290B610700D22946 /* Localizable.strings in Resources */,
 				B4702A94290B5EF900D22946 /* DetailMovieViewController.xib in Resources */,
 				B4702A67290B5D6700D22946 /* LaunchScreen.storyboard in Resources */,
 				B4702A88290B5EBA00D22946 /* data.json in Resources */,
@@ -342,6 +344,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		B4702A9B290B610700D22946 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4702A9A290B610700D22946 /* en */,
+				B4702A9C290B611D00D22946 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -349,6 +360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -409,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -467,6 +480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZF7B3Q8YLK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Presentation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Netflix Clone";
@@ -474,8 +488,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,6 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZF7B3Q8YLK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Presentation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Netflix Clone";
@@ -508,8 +522,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
