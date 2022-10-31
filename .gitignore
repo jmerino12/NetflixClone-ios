@@ -65,3 +65,8 @@ Pods/
 # Carthage/Checkouts
 
 Carthage/Build/
+Carthage/
+
+Infraestructure/Infraestructure.xcodeproj/xcuserdata/
+Domain/Domain.xcodeproj/xcuserdata/
+Presentation/Presentation.xcodeproj/xcuserdata/
