@@ -4,17 +4,18 @@ platform :ios, '12.0'
 workspace 'MovieApp'
 
 target 'Presentation' do
-  xcodeproj 'Presentation/Presentation.xcodeproj'
+  project 'Presentation/Presentation.xcodeproj'
   use_frameworks!
 
   # Pods for Presentation
   pod 'Kingfisher', '~> 7.0'
 end
 
-target 'Presentation' do
-  xcodeproj 'Presentation/Presentation.xcodeproj'
+target 'Infraestructure' do
+  project 'Infraestructure/Infraestructure.xcodeproj'
   use_frameworks!
 
   # Pods for Presentation
   pod 'Kingfisher', '~> 7.0'
+  pod 'Alamofire'
 end
