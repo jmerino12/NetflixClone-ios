@@ -48,6 +48,7 @@
 				B43C7F7F29020D55005A893C /* MovieService.swift */,
 			);
 			name = service;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B40118ED290978E900D86716 /* repositories */ = {
@@ -78,12 +79,20 @@
 		B43C7F4A2901FAA6005A893C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				B40118ED290978E900D86716 /* repositories */,
-				B40118EC290978DB00D86716 /* service */,
-				B40118EB290978D000D86716 /* entity */,
+				B4418FA629241485004F1F27 /* Movie */,
 				B43C7F4B2901FAA6005A893C /* Domain.h */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		B4418FA629241485004F1F27 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				B40118EB290978D000D86716 /* entity */,
+				B40118ED290978E900D86716 /* repositories */,
+				B40118EC290978DB00D86716 /* service */,
+			);
+			path = Movie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

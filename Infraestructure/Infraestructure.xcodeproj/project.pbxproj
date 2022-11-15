@@ -79,57 +79,56 @@
 			path = ../Pods;
 			sourceTree = "<group>";
 		};
-		B40118EE29097AD800D86716 /* anticorruption */ = {
+		B40118EE29097AD800D86716 /* Anticorruption */ = {
 			isa = PBXGroup;
 			children = (
 				B4E57C04290333B600D2916D /* MovieTranslator.swift */,
 			);
-			path = anticorruption;
+			path = Anticorruption;
 			sourceTree = "<group>";
 		};
-		B40118EF29097AEC00D86716 /* repositories */ = {
+		B40118EF29097AEC00D86716 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */,
 				B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */,
 			);
-			path = repositories;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
-		B40118F029097B0F00D86716 /* api */ = {
+		B40118F029097B0F00D86716 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				B40118F129097B1900D86716 /* entity */,
+				B40118F129097B1900D86716 /* Entity */,
 				B43C7F8729021713005A893C /* ApiCaller.swift */,
 			);
-			path = api;
+			path = Api;
 			sourceTree = "<group>";
 		};
-		B40118F129097B1900D86716 /* entity */ = {
+		B40118F129097B1900D86716 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				B4E57C022903002400D2916D /* MovieResult.swift */,
 			);
-			path = entity;
+			path = Entity;
 			sourceTree = "<group>";
 		};
-		B43A41A62908629000A877E1 /* database */ = {
+		B43A41A62908629000A877E1 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				B4FDD5BF290891D8002E3EDA /* Movie.xcdatamodeld */,
-				B43A41AA290865E600A877E1 /* model */,
-				B43A41E4290870FD00A877E1 /* CoreDataStack.swift */,
+				B43A41AA290865E600A877E1 /* Entity */,
 			);
-			path = database;
+			path = Database;
 			sourceTree = "<group>";
 		};
-		B43A41AA290865E600A877E1 /* model */ = {
+		B43A41AA290865E600A877E1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				B4855E1C290B2A16004EE440 /* MovieDB+CoreDataClass.swift */,
 				B4855E1D290B2A16004EE440 /* MovieDB+CoreDataProperties.swift */,
 			);
-			path = model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		B43C7F522901FAC1005A893C = {
@@ -153,10 +152,9 @@
 		B43C7F5E2901FAC1005A893C /* Infraestructure */ = {
 			isa = PBXGroup;
 			children = (
-				B40118F029097B0F00D86716 /* api */,
-				B40118EE29097AD800D86716 /* anticorruption */,
-				B40118EF29097AEC00D86716 /* repositories */,
-				B43A41A62908629000A877E1 /* database */,
+				B4418FA829241B04004F1F27 /* Shared */,
+				B4418FA729241AD4004F1F27 /* Movie */,
+				B43A41A62908629000A877E1 /* Database */,
 				B43C7F5F2901FAC1005A893C /* Infraestructure.h */,
 			);
 			path = Infraestructure;
@@ -171,6 +169,24 @@
 				8D1E20509642C50DA6185C10 /* Pods_Infraestructure.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4418FA729241AD4004F1F27 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				B40118EF29097AEC00D86716 /* Repositories */,
+				B40118EE29097AD800D86716 /* Anticorruption */,
+				B40118F029097B0F00D86716 /* Api */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		B4418FA829241B04004F1F27 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B43A41E4290870FD00A877E1 /* CoreDataStack.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
