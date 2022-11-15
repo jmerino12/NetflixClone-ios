@@ -18,7 +18,6 @@ public struct APICaller {
     
    // ---------------- ALAMOFIRE----------------------------------------------------------------
     let queue = DispatchQueue(label: "getMovies", qos: .utility, attributes: .concurrent)
-    
     public func fetchMovies(with urlString: String, completion: @escaping([Movie]?)->Void){
         get(url: urlString) { response in
             if (response.error != nil){

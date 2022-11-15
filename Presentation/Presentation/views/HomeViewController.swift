@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         return table
     }()
     
-    let sectionTitle:  [String] = [NSLocalizedString("lastetMovie", comment: ""), NSLocalizedString("upcoming", comment: ""), NSLocalizedString("popular", comment: ""), NSLocalizedString("topRate", comment: "")]
+    let sectionTitle:  [String] = ["lastetMovie".localized(tableName: "Localizable"), "upcoming".localized(tableName: "Localizable"), "popular".localized(tableName: "Localizable"), "topRate".localized(tableName: "Localizable")]
 
  
     override func viewDidLoad() {

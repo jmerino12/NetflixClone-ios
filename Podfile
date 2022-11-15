@@ -6,16 +6,14 @@ workspace 'MovieApp'
 target 'Presentation' do
   project 'Presentation/Presentation.xcodeproj'
   use_frameworks!
-
   # Pods for Presentation
   pod 'Kingfisher', '~> 7.0'
+  pod 'Alamofire', '~> 5.6.2'
 end
 
 target 'Infraestructure' do
   project 'Infraestructure/Infraestructure.xcodeproj'
   use_frameworks!
-
-  # Pods for Presentation
-  pod 'Kingfisher', '~> 7.0'
-  pod 'Alamofire'
+  # Pods for Infraestructure
+  pod 'Alamofire', '~> 5.6.2'
 end

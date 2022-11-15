@@ -6,13 +6,39 @@
 //
 
 import UIKit
+import Alamofire
 
 class DownloadViewController: UIViewController {
+    
+    let myLabel: UILabel = {
+        let myLabel = UILabel()
+        myLabel.translatesAutoresizingMaskIntoConstraints = false
+        myLabel.text = "myDownloads".localized(tableName: "DownloadScreen")
+        myLabel.textColor = .white
+        return myLabel
+    }()
+    
+    let myImage : UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named:"icon-download")
+        image.backgroundColor = .white
+        return image
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+        view.addSubview(myLabel)
+        myLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        myLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        
+        view.addSubview(myImage)
+        
+        myImage.topAnchor.constraint(equalTo: myLabel.bottomAnchor).isActive = true
+        myImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     }
     
 
