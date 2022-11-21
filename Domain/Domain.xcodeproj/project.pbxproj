@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40CF2D7292831B800D4E97E /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2D6292831B800D4E97E /* LocationRepository.swift */; };
+		B40CF2DE292833BD00D4E97E /* PermissionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */; };
 		B43A41E129086E9300A877E1 /* MovieLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A41E029086E9300A877E1 /* MovieLocalRepository.swift */; };
 		B43C7F4C2901FAA6005A893C /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = B43C7F4B2901FAA6005A893C /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B43C7F7A29020B03005A893C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F7929020B03005A893C /* Movie.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B40CF2D6292831B800D4E97E /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
+		B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionChecker.swift; sourceTree = "<group>"; };
 		B43A41E029086E9300A877E1 /* MovieLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalRepository.swift; sourceTree = "<group>"; };
 		B43C7F482901FAA6005A893C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43C7F4B2901FAA6005A893C /* Domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
@@ -60,6 +64,38 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		B40CF2D42928316E00D4E97E /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2D52928319B00D4E97E /* repository */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		B40CF2D52928319B00D4E97E /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2D6292831B800D4E97E /* LocationRepository.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
+		B40CF2DC292833A800D4E97E /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2DF292833ED00D4E97E /* repository */,
+			);
+			path = Permission;
+			sourceTree = "<group>";
+		};
+		B40CF2DF292833ED00D4E97E /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
 		B43C7F3E2901FAA6005A893C = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +115,8 @@
 		B43C7F4A2901FAA6005A893C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B40CF2DC292833A800D4E97E /* Permission */,
+				B40CF2D42928316E00D4E97E /* Location */,
 				B4418FA629241485004F1F27 /* Movie */,
 				B43C7F4B2901FAA6005A893C /* Domain.h */,
 			);
@@ -176,6 +214,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B43A41E129086E9300A877E1 /* MovieLocalRepository.swift in Sources */,
+				B40CF2D7292831B800D4E97E /* LocationRepository.swift in Sources */,
+				B40CF2DE292833BD00D4E97E /* PermissionChecker.swift in Sources */,
 				B43C7F8029020D55005A893C /* MovieService.swift in Sources */,
 				B43C7F7A29020B03005A893C /* Movie.swift in Sources */,
 				B43C7F7E29020D10005A893C /* MovieApiRepository.swift in Sources */,

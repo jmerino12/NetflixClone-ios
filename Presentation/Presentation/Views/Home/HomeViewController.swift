@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 import Domain
 import Infraestructure
 
@@ -19,7 +20,16 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let heigthScreen = UIScreen.main.bounds.height
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
+    
     private let movieService: MovieService = MovieService(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))
+    
+    private var upcomingMovieOperation: GetUpcomingMoviesOperation!
+    private var getPopularMoviesOperation: GetPopularMoviesOperation!
+    private var getTopRateMoviesOperation: GetTopRateMoviesOperation!
+    private var getLatestMoviesOperation: GetLatestMoviesOperation!
+    private var queue : OperationQueue!
+    private var permissionChecker: PermissionChecker!
+    private let coreLocation: CLLocationManager = CLLocationManager()
     
     // MARK: - PROPERTIES VIEW
 
@@ -65,18 +75,29 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        coreLocation.delegate = self
+        getAuthorization()
+        queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
         view.backgroundColor = .black
-    
         setupScrollView()
         setContraintsScrollView()
         setupScrollViewContainer()
         setContrainstsScrollViewContainer()
-        
-        setupTableView()
-        
         AddGradient()
-
+        getAuthorization()
+        
     }
+    
+    
+    func getAuthorization() {
+        if coreLocation.authorizationStatus == CLAuthorizationStatus.notDetermined {
+            coreLocation.requestAlwaysAuthorization()
+        }else {
+            setupTableView()
+        }
+    }
+    
     
     func setupScrollView() {
         view.addSubview(scrollView)
@@ -106,8 +127,13 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
     func setupTableView() {
         myTable.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
-        myTable.dataSource = self
-        myTable.delegate = self
+        DispatchQueue.main.async {
+            self.myTable.dataSource = self
+            self.myTable.delegate = self
+            let num = self.numberOfSections(in: self.myTable)
+            let heightAnchor = (self.HEIGHT_POSTER + self.HEIGHT_HEADER_SECTION ) * CGFloat(num)
+            self.myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
+        }
 
     }
     
@@ -128,16 +154,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         detailScreen.modalPresentationStyle = .popover
         self.present(detailScreen, animated: true, completion: nil)
     }
-
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let num = numberOfSections(in: myTable)
-        let heightAnchor = (HEIGHT_POSTER + HEIGHT_HEADER_SECTION ) * CGFloat(num)
-        //print(heightAnchor)
-        //myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
-        myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
-    }
+    
     
 }
 
@@ -157,28 +175,36 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = true
         switch indexPath.section {
         case 0:
-            movieService.getLatestMovies{ result in
-                cell.configureTitles(movies: result!)
-            }
             
+            getLatestMoviesOperation = GetLatestMoviesOperation(movieService: self.movieService, completion: { movie in
+                cell.configureTitles(movies: movie!)
+            })
+            queue.addOperation(getLatestMoviesOperation)
+
         case 1:
-            movieService.getUpcomingMovies { result in
-                cell.configureTitles(movies: result!)
-            }
+            
+            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.movieService, completion: { movie in
+                cell.configureTitles(movies: movie!)
+            })
+            queue.addOperation(upcomingMovieOperation)
          
         case 2:
-            movieService.getPopularMovies{ result in
-                cell.configureTitles(movies: result!)
-            }
+            getPopularMoviesOperation = GetPopularMoviesOperation(movieService: self.movieService, completion: { movie in
+                cell.configureTitles(movies: movie!)
+            })
+            queue.addOperation(getPopularMoviesOperation)
         case 3:
-            movieService.getTopRateMovies{ result in
-                cell.configureTitles(movies: result!)
-            }
+            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieService: self.movieService, completion: { movie in
+                cell.configureTitles(movies: movie!)
+            })
+            queue.addOperation(getTopRateMoviesOperation)
         default:
             movieService.getUpcomingMovies { result in
                 cell.configureTitles(movies: result!)
             }
         }
+        
+       
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -209,4 +235,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return UIView()
     }
     
+}
+
+extension HomeViewController : CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        getAuthorization()
+    }
 }

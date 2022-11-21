@@ -31,6 +31,10 @@
 		B4951FB8291BE4DA00A27ECD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4951FB7291BE4DA00A27ECD /* Helper.swift */; };
 		B4951FBB291BE50E00A27ECD /* DownloadScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4951FBD291BE50E00A27ECD /* DownloadScreen.strings */; };
 		B4951FC0291BE92800A27ECD /* DownloadAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4951FBF291BE92800A27ECD /* DownloadAssets.xcassets */; };
+		B4BBC05F29268D0B0025C12C /* GetTopRateMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC05E29268D0B0025C12C /* GetTopRateMoviesOperation.swift */; };
+		B4BBC06129268D900025C12C /* GetPopularMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC06029268D900025C12C /* GetPopularMoviesOperation.swift */; };
+		B4BBC0632926937F0025C12C /* GetLatestMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC0622926937F0025C12C /* GetLatestMoviesOperation.swift */; };
+		B4BCCDBF292517AE00D1A334 /* GetUpcomingMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCCDBE292517AE00D1A334 /* GetUpcomingMoviesOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +81,10 @@
 		B4951FBC291BE50E00A27ECD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DownloadScreen.strings; sourceTree = "<group>"; };
 		B4951FBE291BE51100A27ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DownloadScreen.strings; sourceTree = "<group>"; };
 		B4951FBF291BE92800A27ECD /* DownloadAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DownloadAssets.xcassets; sourceTree = "<group>"; };
+		B4BBC05E29268D0B0025C12C /* GetTopRateMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopRateMoviesOperation.swift; sourceTree = "<group>"; };
+		B4BBC06029268D900025C12C /* GetPopularMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularMoviesOperation.swift; sourceTree = "<group>"; };
+		B4BBC0622926937F0025C12C /* GetLatestMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestMoviesOperation.swift; sourceTree = "<group>"; };
+		B4BCCDBE292517AE00D1A334 /* GetUpcomingMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUpcomingMoviesOperation.swift; sourceTree = "<group>"; };
 		B56C5D7815186B65E6A0E241 /* Pods_Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C715F05C0334B68F4BCE35A3 /* Pods-Presentation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Presentation.release.xcconfig"; path = "Target Support Files/Pods-Presentation/Pods-Presentation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +216,10 @@
 				B4702A7E290B5E5400D22946 /* CodableBundleExtension.swift */,
 				B4951FB7291BE4DA00A27ECD /* Helper.swift */,
 				B4418FA32923DCE1004F1F27 /* TestOperation.swift */,
+				B4BCCDBE292517AE00D1A334 /* GetUpcomingMoviesOperation.swift */,
+				B4BBC05E29268D0B0025C12C /* GetTopRateMoviesOperation.swift */,
+				B4BBC06029268D900025C12C /* GetPopularMoviesOperation.swift */,
+				B4BBC0622926937F0025C12C /* GetLatestMoviesOperation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -355,15 +367,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4702A93290B5EF900D22946 /* DetailMovieViewController.swift in Sources */,
+				B4BBC06129268D900025C12C /* GetPopularMoviesOperation.swift in Sources */,
 				B4951FB8291BE4DA00A27ECD /* Helper.swift in Sources */,
+				B4BBC05F29268D0B0025C12C /* GetTopRateMoviesOperation.swift in Sources */,
 				B4702A6F290B5DB300D22946 /* MainTabBarViewController.swift in Sources */,
 				B4702A90290B5ECC00D22946 /* ToLaughViewController.swift in Sources */,
+				B4BCCDBF292517AE00D1A334 /* GetUpcomingMoviesOperation.swift in Sources */,
 				B4702A8D290B5ECB00D22946 /* NewAndPopularViewController.swift in Sources */,
 				B4702A7C290B5DF900D22946 /* CollectionViewTableViewCell.swift in Sources */,
 				B4702A7B290B5DF900D22946 /* PosterTableViewCell.swift in Sources */,
 				B4702A8E290B5ECB00D22946 /* DownloadViewController.swift in Sources */,
 				B4702A5B290B5D6500D22946 /* AppDelegate.swift in Sources */,
 				B4702A80290B5E5500D22946 /* CodableBundleExtension.swift in Sources */,
+				B4BBC0632926937F0025C12C /* GetLatestMoviesOperation.swift in Sources */,
 				B4702A5D290B5D6500D22946 /* SceneDelegate.swift in Sources */,
 				B4702A8F290B5ECC00D22946 /* HomeViewController.swift in Sources */,
 				B4418FA42923DCE1004F1F27 /* TestOperation.swift in Sources */,

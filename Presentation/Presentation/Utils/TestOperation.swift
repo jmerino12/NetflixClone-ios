@@ -23,6 +23,8 @@ class TestOperation: Operation {
         outputImage = applyMonoEffectTo(image: inputImage)
     }
     
+    
+    
     private func applyMonoEffectTo(image: UIImage?) -> UIImage? {
         guard let image = image,
               let ciImage = CIImage(image: image),

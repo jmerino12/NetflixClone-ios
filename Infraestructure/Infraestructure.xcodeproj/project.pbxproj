@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A8909B239F9F0BAD66655EA8 /* Pods_Infraestructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1E20509642C50DA6185C10 /* Pods_Infraestructure.framework */; };
+		B40CF2DB2928322100D4E97E /* LocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2DA2928322100D4E97E /* LocationRepositoryImpl.swift */; };
+		B40CF2E22928353E00D4E97E /* PermissionCheckerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2E12928353E00D4E97E /* PermissionCheckerImpl.swift */; };
 		B433E846291AFC1D0075DCDD /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B433E845291AFC1D0075DCDD /* Domain.framework */; };
 		B433E847291AFC1D0075DCDD /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B433E845291AFC1D0075DCDD /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B43A41E329086F1E00A877E1 /* MovieLocalRepositoyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		24530CBC71BF91199B291F4A /* Pods-Infraestructure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Infraestructure.release.xcconfig"; path = "Target Support Files/Pods-Infraestructure/Pods-Infraestructure.release.xcconfig"; sourceTree = "<group>"; };
 		8D1E20509642C50DA6185C10 /* Pods_Infraestructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Infraestructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40CF2DA2928322100D4E97E /* LocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepositoryImpl.swift; sourceTree = "<group>"; };
+		B40CF2E12928353E00D4E97E /* PermissionCheckerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCheckerImpl.swift; sourceTree = "<group>"; };
 		B433E845291AFC1D0075DCDD /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalRepositoyImpl.swift; sourceTree = "<group>"; };
 		B43A41E4290870FD00A877E1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -113,6 +117,30 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		B40CF2D8292831FB00D4E97E /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2D92928320900D4E97E /* repository */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		B40CF2D92928320900D4E97E /* repository */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2DA2928322100D4E97E /* LocationRepositoryImpl.swift */,
+			);
+			path = repository;
+			sourceTree = "<group>";
+		};
+		B40CF2E02928352300D4E97E /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				B40CF2E12928353E00D4E97E /* PermissionCheckerImpl.swift */,
+			);
+			path = Permission;
+			sourceTree = "<group>";
+		};
 		B43A41A62908629000A877E1 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +180,8 @@
 		B43C7F5E2901FAC1005A893C /* Infraestructure */ = {
 			isa = PBXGroup;
 			children = (
+				B40CF2E02928352300D4E97E /* Permission */,
+				B40CF2D8292831FB00D4E97E /* Location */,
 				B4418FA829241B04004F1F27 /* Shared */,
 				B4418FA729241AD4004F1F27 /* Movie */,
 				B43A41A62908629000A877E1 /* Database */,
@@ -302,6 +332,8 @@
 				B4855E1F290B2A17004EE440 /* MovieDB+CoreDataProperties.swift in Sources */,
 				B43A41E5290870FD00A877E1 /* CoreDataStack.swift in Sources */,
 				B4855E1E290B2A17004EE440 /* MovieDB+CoreDataClass.swift in Sources */,
+				B40CF2E22928353E00D4E97E /* PermissionCheckerImpl.swift in Sources */,
+				B40CF2DB2928322100D4E97E /* LocationRepositoryImpl.swift in Sources */,
 				B43A41E329086F1E00A877E1 /* MovieLocalRepositoyImpl.swift in Sources */,
 				B4E57C05290333B600D2916D /* MovieTranslator.swift in Sources */,
 				B43C7F8829021713005A893C /* ApiCaller.swift in Sources */,
