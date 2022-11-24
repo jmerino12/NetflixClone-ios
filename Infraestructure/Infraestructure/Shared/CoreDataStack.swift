@@ -26,6 +26,7 @@ public class CoreDataStack {
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
+            container.viewContext.mergePolicy =  NSMergePolicy.mergeByPropertyObjectTrump
         }
         return container
     }()

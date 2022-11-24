@@ -2,7 +2,7 @@
 //  MovieDB+CoreDataProperties.swift
 //  Infraestructure
 //
-//  Created by Jonathan Eduardo Meriño Bolívar - Ceiba Software on 25/10/22.
+//  Created by Jonathan Eduardo Meriño Bolívar - Ceiba Software on 24/11/22.
 //
 //
 
@@ -29,7 +29,7 @@ extension MovieDB {
     @NSManaged public var video: Bool
     @NSManaged public var vote_average: Float
     @NSManaged public var vote_count: Int64
-    @NSManaged public var type: String?
+    @NSManaged public var type: MovieTypeDB?
 
 }
 

@@ -21,4 +21,5 @@ public class MovieTranslator {
     func fromDomainToDatabase(movie: Domain.Movie, context: NSManagedObjectContext) -> MovieDB {
         return MovieDB(context: context)
     }
+    
 }

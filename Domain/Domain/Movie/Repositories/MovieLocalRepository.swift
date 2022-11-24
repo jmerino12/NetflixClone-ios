@@ -8,10 +8,10 @@
 import Foundation
 
 public protocol MovieLocalRepository {
-    func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void)
-    func getTopRateMovies(completion: @escaping ([Domain.Movie]?) -> Void)
-    func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void)
-    func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void)
-    func isEmpty(type: String) -> Bool
-    func saveMovies(movie: Movie, typeMovie: String)
+    func getUpcomingMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)
+    func getTopRateMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)
+    func getPopularMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)
+    func getLatestMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)
+    func isEmpty(movieType: MovieType) -> Bool
+    func saveMovies(movie: Movie, typeMovie: MovieType)
 }

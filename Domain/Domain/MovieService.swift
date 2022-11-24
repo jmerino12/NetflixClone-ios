@@ -8,8 +8,13 @@
 import Foundation
 
 public struct MovieService {
-    let movieApiRepository: MovieApiRepository
-    let movieLocalRepository: MovieLocalRepository
+    private let movieApiRepository: MovieApiRepository
+    private let movieLocalRepository: MovieLocalRepository
+    
+    private let movieTypeUpcoming = MovieType(name: "Upcoming", id: 1)
+    private let movieTypeTopRateMovie = MovieType(name: "Top Rate Movies", id: 2)
+    private let movieTypePopularMovie = MovieType(name: "Popular Movies", id: 3)
+    private let movieTypeLastestMovie = MovieType(name: "Lastest", id: 4)
     
     public init(movieApiRepository: MovieApiRepository, movieLocalRepository: MovieLocalRepository) {
         self.movieApiRepository = movieApiRepository
@@ -17,65 +22,66 @@ public struct MovieService {
     }
     
     public func getUpcomingMovies(completion: @escaping([Movie]?)->Void) {
-        if(movieLocalRepository.isEmpty(type: "1")){
+        
+        if(movieLocalRepository.isEmpty(movieType: movieTypeUpcoming)){
             movieApiRepository.getUpcomingMovies { movie in
                 guard let movies = movie else { return }
                 for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: "1")
+                    movieLocalRepository.saveMovies(movie: movie, typeMovie: movieTypeUpcoming)
                 }
                 completion(movie)
             }
         }else {
-            movieLocalRepository.getUpcomingMovies { movie in
+            movieLocalRepository.getUpcomingMovies(movieType: movieTypeUpcoming) { movie in
                 completion(movie)
             }
         }
     }
     
     public func getTopRateMovies(completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(type: "2")){
+        if(movieLocalRepository.isEmpty(movieType: movieTypeTopRateMovie)) {
             movieApiRepository.getTopRateMovies { movie in
                 guard let movies = movie else { return }
                 for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: "2")
+                    movieLocalRepository.saveMovies(movie: movie, typeMovie: movieTypeTopRateMovie)
                 }
                 completion(movie)
             }
         }else {
-            movieLocalRepository.getTopRateMovies { movie in
+            movieLocalRepository.getTopRateMovies(movieType: movieTypeTopRateMovie) { movie in
                 completion(movie)
             }
         }
-    
+        
     }
     
     public func getPopularMovies(completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(type: "3")){
+        if(movieLocalRepository.isEmpty(movieType:movieTypePopularMovie )){
             movieApiRepository.getPopularMovies { movie in
                 guard let movies = movie else { return }
                 for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: "3")
+                    movieLocalRepository.saveMovies(movie: movie, typeMovie:movieTypePopularMovie )
                 }
                 completion(movie)
             }
         }else {
-            movieLocalRepository.getPopularMovies { movie in
+            movieLocalRepository.getPopularMovies(movieType: movieTypePopularMovie) { movie in
                 completion(movie)
             }
         }
     }
     
     public func getLatestMovies(completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(type: "4")){
+        if(movieLocalRepository.isEmpty(movieType: movieTypeLastestMovie)){
             movieApiRepository.getLatestMovies { movie in
                 guard let movies = movie else { return }
                 for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: "4")
+                    movieLocalRepository.saveMovies(movie: movie, typeMovie:movieTypeLastestMovie )
                 }
                 completion(movie)
             }
         }else {
-            movieLocalRepository.getLatestMovies { movie in
+            movieLocalRepository.getLatestMovies(movieType: movieTypeLastestMovie) { movie in
                 completion(movie)
             }
         }

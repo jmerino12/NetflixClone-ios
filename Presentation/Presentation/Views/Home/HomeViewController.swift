@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
     
-    private let movieService: MovieService = MovieService(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))
+    private var movieService: MovieService? = MovieService(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))
     
     private var upcomingMovieOperation: GetUpcomingMoviesOperation!
     private var getPopularMoviesOperation: GetPopularMoviesOperation!
@@ -155,8 +155,15 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         self.present(detailScreen, animated: true, completion: nil)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        queue.cancelAllOperations()
+        movieService = nil
+    }
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -176,30 +183,30 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             
-            getLatestMoviesOperation = GetLatestMoviesOperation(movieService: self.movieService, completion: { movie in
+            getLatestMoviesOperation = GetLatestMoviesOperation(movieService: self.movieService!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getLatestMoviesOperation)
 
         case 1:
             
-            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.movieService, completion: { movie in
+            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.movieService!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(upcomingMovieOperation)
          
         case 2:
-            getPopularMoviesOperation = GetPopularMoviesOperation(movieService: self.movieService, completion: { movie in
+            getPopularMoviesOperation = GetPopularMoviesOperation(movieService: self.movieService!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getPopularMoviesOperation)
         case 3:
-            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieService: self.movieService, completion: { movie in
+            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieService: self.movieService!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getTopRateMoviesOperation)
         default:
-            movieService.getUpcomingMovies { result in
+            movieService!.getUpcomingMovies { result in
                 cell.configureTitles(movies: result!)
             }
         }
