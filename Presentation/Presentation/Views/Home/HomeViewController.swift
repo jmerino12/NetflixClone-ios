@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let coreLocation: CLLocationManager = CLLocationManager()
     
     // MARK: - PROPERTIES VIEW
-
+    
     let scrollView: UIScrollView = {
         let myScrollView = UIScrollView()
         myScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         return image
     }()
     
-
+    
     let myTable : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         
         super.viewDidLoad()
         coreLocation.delegate = self
-        getAuthorization()
         queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         view.backgroundColor = .black
@@ -206,9 +205,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             })
             queue.addOperation(getTopRateMoviesOperation)
         default:
-            movieService!.getUpcomingMovies { result in
-                cell.configureTitles(movies: result!)
-            }
+            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.movieService!, completion: { movie in
+                cell.configureTitles(movies: movie!)
+            })
+            queue.addOperation(upcomingMovieOperation)
         }
         
        
@@ -232,12 +232,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.contentView.backgroundColor = .black
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
-            header.textLabel?.textColor = .white
+        header.textLabel?.textColor = .white
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0
     }
-
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }

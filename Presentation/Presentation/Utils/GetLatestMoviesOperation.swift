@@ -10,11 +10,12 @@ import Domain
 
 class GetLatestMoviesOperation: Operation {
     private var movieService: MovieService?
+    private let movieTypeLastestMovie = MovieType(name: "Lastest", id: 4)
     
     init(movieService: MovieService, completion: @escaping([Movie]?)->Void) {
         self.movieService = movieService
         
-        movieService.getLatestMovies { movie in
+        movieService.getLatestMovies(movieType: movieTypeLastestMovie) { movie in
             completion(movie)
         }
         

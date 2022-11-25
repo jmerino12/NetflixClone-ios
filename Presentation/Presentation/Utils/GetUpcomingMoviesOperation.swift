@@ -12,12 +12,12 @@ import Domain
 class GetUpcomingMoviesOperation: Operation {
     
     private var movieService: MovieService?
-    
+    private let movieTypeUpcoming = MovieType(name: "Upcoming", id: 1)
     
     init(movieService: MovieService, completion: @escaping([Movie]?)->Void) {
         self.movieService = movieService
         
-        movieService.getUpcomingMovies { movie in
+        movieService.getUpcomingMovies(movieType: movieTypeUpcoming) { movie in
             completion(movie)
         }
         

@@ -31,7 +31,7 @@ class PosterTableViewCell: UICollectionViewCell {
     }
     
     func loadView() {
-        guard let movieUrl =  movie?.poster_path else { return }
+        guard let movieUrl =  movie?.poster_path != nil ? movie?.poster_path : movie?.backdrop_path else { return }
         imagePoster.kf.indicatorType = .activity
         imagePoster.backgroundColor = .white
         DispatchQueue.main.async {

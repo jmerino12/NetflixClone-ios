@@ -8,20 +8,21 @@
 import Domain
 
 public class MovieApiRepositoryManualMock: MovieApiRepository {
+    
     public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        <#code#>
+        completion(moviesInApi)
     }
     
     public func getTopRateMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        <#code#>
+        completion(moviesInApi)
     }
     
     public func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        <#code#>
+        completion(moviesInApi)
     }
     
     public func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        <#code#>
+        completion(moviesInApi)
     }
     
 
