@@ -11,7 +11,7 @@ import Domain
 
 
 public class MovieApiRepositoryImpl: MovieApiRepository {
- 
+    
     private let apiCaller: APICaller
     private let locationRepository: LocationRepository
     
@@ -21,25 +21,58 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
         locationRepository = LocationRepositoryImpl(permissionChecker: LocationPermissionCheckerImpl(locationManager: locationManager), locationManager: locationManager)
     }
     
+    public func getMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)throws -> Void
+    {
+        switch movieType.name {
+        case "Upcoming":
+            getUpcomingMovies { movie in
+                completion(movie)
+            }
+            break
+            
+        case "Top Rate Movies":
+            getTopRateMovies { movie in
+                completion(movie)
+            }
+            break
+            
+        case "Popular Movies":
+            getPopularMovies { movie in
+                completion(movie)
+            }
+            break
+            
+        case "Lastest":
+            getLatestMovies { movie in
+                completion(movie)
+            }
+            break
+        default:
+            fatalError("No se encuentra implementado esta categoria")
+        }
+    }
+    
+    
+    
     public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
         locationRepository.findLastRegion{ region in
-                let movieTranslator = MovieTranslator()
-                self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&region=US") { result in
-                    switch result {
-                    case .none:
-                        debugPrint("Error")
-                    case .some(let data):
-                        let myDtoMovies = data.enumerated().map { (index, element) in
-                            return movieTranslator.fromApiToDomain(movie: element)
-                        }
-                        DispatchQueue.main.async {
-                            completion(myDtoMovies)
-                        }
+            let movieTranslator = MovieTranslator()
+            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&region=US") { result in
+                switch result {
+                case .none:
+                    debugPrint("Error")
+                case .some(let data):
+                    let myDtoMovies = data.enumerated().map { (index, element) in
+                        return movieTranslator.fromApiToDomain(movie: element)
                     }
-                    
+                    DispatchQueue.main.async {
+                        completion(myDtoMovies)
+                    }
+                }
+                
                 
             }
-
+            
             
         }
         
@@ -64,7 +97,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 }
             }
         }
-
+        
     }
     
     public func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
@@ -85,7 +118,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                 }
             }
         }
- 
+        
     }
     
     public func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
@@ -105,16 +138,8 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
                     print(myError)
                 }
             }
-
+            
         }
     }
     
-    
 }
-
-
-
-
-
-
-

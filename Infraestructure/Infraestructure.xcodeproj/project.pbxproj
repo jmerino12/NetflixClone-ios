@@ -22,6 +22,7 @@
 		B43C7F602901FAC1005A893C /* Infraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = B43C7F5F2901FAC1005A893C /* Infraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B43C7F8229020F1B005A893C /* MovieApiRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */; };
 		B43C7F8829021713005A893C /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F8729021713005A893C /* ApiCaller.swift */; };
+		B4BBC51D293647EB006B29F3 /* MovieProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC51C293647EB006B29F3 /* MovieProxy.swift */; };
 		B4E57C032903002400D2916D /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E57C022903002400D2916D /* MovieResult.swift */; };
 		B4E57C05290333B600D2916D /* MovieTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E57C04290333B600D2916D /* MovieTranslator.swift */; };
 		B4FDD5C1290891D8002E3EDA /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4FDD5BF290891D8002E3EDA /* Movie.xcdatamodeld */; };
@@ -60,6 +61,7 @@
 		B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepositoryImpl.swift; sourceTree = "<group>"; };
 		B43C7F832902105C005A893C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43C7F8729021713005A893C /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
+		B4BBC51C293647EB006B29F3 /* MovieProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieProxy.swift; sourceTree = "<group>"; };
 		B4E57C022903002400D2916D /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		B4E57C04290333B600D2916D /* MovieTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTranslator.swift; sourceTree = "<group>"; };
 		B4FDD5C0290891D8002E3EDA /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */,
 				B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */,
+				B4BBC51C293647EB006B29F3 /* MovieProxy.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BBC51D293647EB006B29F3 /* MovieProxy.swift in Sources */,
 				B43C7F8229020F1B005A893C /* MovieApiRepositoryImpl.swift in Sources */,
 				B4FDD5C1290891D8002E3EDA /* Movie.xcdatamodeld in Sources */,
 				B4E57C032903002400D2916D /* MovieResult.swift in Sources */,

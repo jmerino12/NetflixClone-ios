@@ -7,16 +7,17 @@
 
 import UIKit
 import Domain
+import Infraestructure
 
 class GetTopRateMoviesOperation: Operation {
     
-    private var movieService: MovieService?
+    private let movieProxy: MovieProxy?
     private let movieTypeTopRateMovie = MovieType(name: "Top Rate Movies", id: 2)
 
-    init(movieService: MovieService, completion: @escaping([Movie]?)->Void) {
-        self.movieService = movieService
+    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieProxy = movieProxy
         
-        movieService.getTopRateMovies(movieType: movieTypeTopRateMovie) { movie in
+        movieProxy.getAllMovies(movieType: movieTypeTopRateMovie) { movie in
             completion(movie)
         }
         

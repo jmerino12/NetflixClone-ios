@@ -7,17 +7,18 @@
 
 import UIKit
 import Domain
+import Infraestructure
 
 
 class GetUpcomingMoviesOperation: Operation {
     
-    private var movieService: MovieService?
+    private var movieProxy: MovieProxy?
     private let movieTypeUpcoming = MovieType(name: "Upcoming", id: 1)
     
-    init(movieService: MovieService, completion: @escaping([Movie]?)->Void) {
-        self.movieService = movieService
+    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieProxy = movieProxy
         
-        movieService.getUpcomingMovies(movieType: movieTypeUpcoming) { movie in
+        movieProxy.getAllMovies(movieType: movieTypeUpcoming) { movie in
             completion(movie)
         }
         

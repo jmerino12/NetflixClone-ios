@@ -7,17 +7,18 @@
 
 import Foundation
 import Domain
+import Infraestructure
 
 class GetPopularMoviesOperation: Operation {
     
-    private var movieService: MovieService?
+    private let movieProxy: MovieProxy?
     private let movieTypePopularMovie = MovieType(name: "Popular Movies", id: 3)
 
     
-    init(movieService: MovieService, completion: @escaping([Movie]?)->Void) {
-        self.movieService = movieService
+    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieProxy = movieProxy
         
-        movieService.getPopularMovies(movieType: movieTypePopularMovie) { movie in
+        movieProxy.getAllMovies(movieType: movieTypePopularMovie) { movie in
             completion(movie)
         }
         

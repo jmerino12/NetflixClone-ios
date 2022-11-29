@@ -17,7 +17,7 @@ public class MovieLocalRepositoryImpl: MovieLocalRepository {
         self.coreData = coreData
     }
     
-    public func getUpcomingMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
+    public func getMovieFor(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
         let movieTranslator = MovieTranslator()
         do{
             guard let category = getCategory(categoryName: movieType.name) else { return }
@@ -37,63 +37,6 @@ public class MovieLocalRepositoryImpl: MovieLocalRepository {
         }
     }
     
-    public func getTopRateMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        let movieTranslator = MovieTranslator()
-        do{
-            guard let category = getCategory(categoryName: movieType.name) else { return }
-            let request: NSFetchRequest<MovieDB> = MovieDB.fetchRequest()
-            request.predicate = NSPredicate(format: "type == %@", category)
-            let result = try coreData.managedContext.fetch(request)
-            print(result.count)
-            let myDomainMovies = result.enumerated().map { (index, element) in
-                return movieTranslator.fromDatabaseToDomain(moviedb: element)
-            }
-            DispatchQueue.main.async {
-                completion(myDomainMovies)
-            }
-        }catch {
-            print("Error recuperando la data")
-        }
-        
-    }
-    
-    public func getPopularMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        let movieTranslator = MovieTranslator()
-        do{
-            guard let category = getCategory(categoryName: movieType.name) else { return }
-            let request: NSFetchRequest<MovieDB> = MovieDB.fetchRequest()
-            request.predicate = NSPredicate(format: "type == %@", category)
-            let result = try coreData.managedContext.fetch(request)
-            print(result.count)
-            let myDomainMovies = result.enumerated().map { (index, element) in
-                return movieTranslator.fromDatabaseToDomain(moviedb: element)
-            }
-            DispatchQueue.main.async {
-                completion(myDomainMovies)
-            }
-        }catch {
-            print("Error recuperando la data")
-        }
-        
-    }
-    
-    public func getLatestMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        let movieTranslator = MovieTranslator()
-        do{
-            guard let category = getCategory(categoryName: movieType.name) else { return }
-            let request: NSFetchRequest<MovieDB> = MovieDB.fetchRequest()
-            request.predicate = NSPredicate(format: "type == %@", category)
-            let result = try coreData.managedContext.fetch(request)
-            let myDomainMovies = result.enumerated().map { (index, element) in
-                return movieTranslator.fromDatabaseToDomain(moviedb: element)
-            }
-            DispatchQueue.main.async {
-                completion(myDomainMovies)
-            }
-        }catch {
-            print("Error recuperando la data")
-        }
-    }
     
     public func isEmpty(movieType: MovieType) -> Bool {
         do{
