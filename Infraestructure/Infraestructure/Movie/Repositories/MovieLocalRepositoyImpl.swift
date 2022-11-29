@@ -102,4 +102,34 @@ public class MovieLocalRepositoryImpl: MovieLocalRepository {
             return
         }
     }
+    
+    
+    public func clearDB(movieType: MovieType) {
+        do {
+            guard let category = getCategory(categoryName: movieType.name) else { return }
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieDB")
+            request.predicate = NSPredicate(format: "type == %@", category)
+            let result =  NSBatchDeleteRequest(fetchRequest: request)
+            try coreData.managedContext.execute(result)
+        } catch (let error) {
+            print(error)
+            return
+        }
+
+    }
+    
+    public func saveDate() {
+        UserDefaults.standard.set(Date(), forKey: "dateToSaveMovie")
+    }
+    
+    public func isMovieSavedMoreThan24Hours() -> Bool {
+        let date = UserDefaults.standard.object(forKey: "dateToSaveMovie") as? Date
+        if date != nil {
+            let interval = Date() - date!
+            if abs(interval.hour!) >= 24{
+                return true
+            }
+        }
+        return false
+    }
 }

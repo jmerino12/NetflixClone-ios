@@ -9,8 +9,8 @@ import Foundation
 import Domain
 
 public class MovieProxy: MovieRepository {
-
-
+    
+    
     private let movieApiRepository: MovieApiRepository
     private let movieLocalRepository: MovieLocalRepository
     
@@ -20,12 +20,14 @@ public class MovieProxy: MovieRepository {
     }
     
     public func getAllMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        if(movieLocalRepository.isEmpty(movieType: movieType)){
-           try! movieApiRepository.getMovies(movieType: movieType) { movie in
+        if(movieLocalRepository.isEmpty(movieType: movieType) || movieLocalRepository.isMovieSavedMoreThan24Hours()){
+            try! movieApiRepository.getMovies(movieType: movieType) { movie in
                 guard let movies = movie else { return }
+                self.movieLocalRepository.clearDB(movieType: movieType)
                 for movie in movies {
                     self.movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType)
                 }
+                self.movieLocalRepository.saveDate()
                 completion(movie)
             }
         }else {
@@ -34,59 +36,4 @@ public class MovieProxy: MovieRepository {
             }
         }
     }
-    
-
-   /* public func getUpcomingMovies(movieType: MovieType, completion: @escaping([Movie]?)->Void) {
-        
-    
-    }
-    
-    public func getTopRateMovies(movieType: MovieType, completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(movieType: movieType)) {
-            movieApiRepository.getTopRateMovies { movie in
-                guard let movies = movie else { return }
-                for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType)
-                }
-                completion(movie)
-            }
-        }else {
-            movieLocalRepository.getTopRateMovies(movieType: movieType) { movie in
-                completion(movie)
-            }
-        }
-        
-    }
-    
-    public func getPopularMovies(movieType: MovieType, completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(movieType: movieType )){
-            movieApiRepository.getPopularMovies { movie in
-                guard let movies = movie else { return }
-                for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType )
-                }
-                completion(movie)
-            }
-        }else {
-            movieLocalRepository.getPopularMovies(movieType: movieType) { movie in
-                completion(movie)
-            }
-        }
-    }
-    
-    public func getLatestMovies(movieType: MovieType, completion: @escaping([Movie]?)->Void){
-        if(movieLocalRepository.isEmpty(movieType: movieType)){
-            movieApiRepository.getLatestMovies { movie in
-                guard let movies = movie else { return }
-                for movie in movies {
-                    movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType )
-                }
-                completion(movie)
-            }
-        }else {
-            movieLocalRepository.getLatestMovies(movieType: movieType) { movie in
-                completion(movie)
-            }
-        }
-    }*/
 }

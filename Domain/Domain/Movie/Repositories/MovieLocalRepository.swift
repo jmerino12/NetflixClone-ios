@@ -11,4 +11,7 @@ public protocol MovieLocalRepository {
     func getMovieFor(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)
     func isEmpty(movieType: MovieType) -> Bool
     func saveMovies(movie: Movie, typeMovie: MovieType)
+    func clearDB(movieType: MovieType)
+    func saveDate()
+    func isMovieSavedMoreThan24Hours() -> Bool
 }
