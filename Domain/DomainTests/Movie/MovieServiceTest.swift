@@ -10,7 +10,7 @@ import XCTest
 
 final class MovieServiceTest: XCTestCase {
 
-    func test_getPopularMoviesFromApi_successful() {
+    func test_getPopularMovies_successful() {
         //Arange
         let movieLocalRepository: MovieLocalRepositoryManualMock = MovieLocalRepositoryManualMock()
         let movieApiRepository: MovieApiRepositoryManualMock = MovieApiRepositoryManualMock()

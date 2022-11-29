@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.6.4)
   - Kingfisher (7.4.1)
+  - SwiftMonkey (2.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.2)
   - Kingfisher (~> 7.0)
+  - SwiftMonkey (~> 2.2.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - SwiftMonkey
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
+  SwiftMonkey: 24ffde5b590d3658cfcb1d775cf74b9f5280eb9c
 
-PODFILE CHECKSUM: cb5cbcf8dce7b1e993d3955c7fb4926ef15c934b
+PODFILE CHECKSUM: e953e300dd291aeadb9c6bc0f1a016ed87d32a6a
 
 COCOAPODS: 1.11.3

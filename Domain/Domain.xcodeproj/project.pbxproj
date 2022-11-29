@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B40CF2D7292831B800D4E97E /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2D6292831B800D4E97E /* LocationRepository.swift */; };
-		B40CF2DE292833BD00D4E97E /* PermissionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */; };
+		B40CF2DE292833BD00D4E97E /* LocationPermissionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CF2DD292833BD00D4E97E /* LocationPermissionChecker.swift */; };
 		B4152977292E60FA00E026DE /* MovieServiceManualMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4152976292E60FA00E026DE /* MovieServiceManualMock.swift */; };
 		B415297A292E619D00E026DE /* MovieApiRepositoryManualMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4152979292E619D00E026DE /* MovieApiRepositoryManualMock.swift */; };
 		B415297C292E61B900E026DE /* MovieLocalRepositoryManualMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415297B292E61B900E026DE /* MovieLocalRepositoryManualMock.swift */; };
@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		B40CF2D6292831B800D4E97E /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
-		B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionChecker.swift; sourceTree = "<group>"; };
+		B40CF2DD292833BD00D4E97E /* LocationPermissionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionChecker.swift; sourceTree = "<group>"; };
 		B4152976292E60FA00E026DE /* MovieServiceManualMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceManualMock.swift; sourceTree = "<group>"; };
 		B4152979292E619D00E026DE /* MovieApiRepositoryManualMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepositoryManualMock.swift; sourceTree = "<group>"; };
 		B415297B292E61B900E026DE /* MovieLocalRepositoryManualMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalRepositoryManualMock.swift; sourceTree = "<group>"; };
@@ -100,33 +100,33 @@
 		B40CF2D42928316E00D4E97E /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				B40CF2D52928319B00D4E97E /* repository */,
+				B40CF2D52928319B00D4E97E /* Repository */,
 			);
 			path = Location;
 			sourceTree = "<group>";
 		};
-		B40CF2D52928319B00D4E97E /* repository */ = {
+		B40CF2D52928319B00D4E97E /* Repository */ = {
 			isa = PBXGroup;
 			children = (
 				B40CF2D6292831B800D4E97E /* LocationRepository.swift */,
 			);
-			path = repository;
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		B40CF2DC292833A800D4E97E /* Permission */ = {
 			isa = PBXGroup;
 			children = (
-				B40CF2DF292833ED00D4E97E /* repository */,
+				B40CF2DF292833ED00D4E97E /* Repository */,
 			);
 			path = Permission;
 			sourceTree = "<group>";
 		};
-		B40CF2DF292833ED00D4E97E /* repository */ = {
+		B40CF2DF292833ED00D4E97E /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				B40CF2DD292833BD00D4E97E /* PermissionChecker.swift */,
+				B40CF2DD292833BD00D4E97E /* LocationPermissionChecker.swift */,
 			);
-			path = repository;
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		B4152975292E60D400E026DE /* Service */ = {
@@ -333,7 +333,7 @@
 			files = (
 				B43A41E129086E9300A877E1 /* MovieLocalRepository.swift in Sources */,
 				B40CF2D7292831B800D4E97E /* LocationRepository.swift in Sources */,
-				B40CF2DE292833BD00D4E97E /* PermissionChecker.swift in Sources */,
+				B40CF2DE292833BD00D4E97E /* LocationPermissionChecker.swift in Sources */,
 				B43C7F8029020D55005A893C /* MovieService.swift in Sources */,
 				B43C7F7A29020B03005A893C /* Movie.swift in Sources */,
 				B43C7F7E29020D10005A893C /* MovieApiRepository.swift in Sources */,

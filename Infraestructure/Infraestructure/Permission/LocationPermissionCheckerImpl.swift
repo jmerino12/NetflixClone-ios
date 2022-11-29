@@ -9,13 +9,14 @@ import Foundation
 import CoreLocation
 import Domain
 
-public class PermissionCheckerImpl: PermissionChecker {
+public class LocationPermissionCheckerImpl: LocationPermissionChecker {
     
-    let locationManager: CLLocationManager
+    private let locationManager: CLLocationManager
     
     public init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
     }
+    
     public func checkPermission(completion : @escaping (Bool) -> Void) {
             let status = self.locationManager.authorizationStatus
             switch status {

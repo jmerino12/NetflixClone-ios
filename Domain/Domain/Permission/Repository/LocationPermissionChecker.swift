@@ -8,6 +8,6 @@
 import Foundation
 
 
-public protocol PermissionChecker {
+public protocol LocationPermissionChecker {
     func checkPermission(completion : @escaping (Bool) -> Void)
 }

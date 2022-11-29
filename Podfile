@@ -12,6 +12,11 @@ target 'Presentation' do
   # Pods for Presentation
   pod 'Kingfisher', '~> 7.0'
   pod alamofire, alamofireVersion
+
+  target 'NetflixClone-iosUITests' do
+    # Pods for testing
+    pod 'SwiftMonkey', '~> 2.2.0'
+  end
 end
 
 target 'Infraestructure' do
@@ -19,4 +24,12 @@ target 'Infraestructure' do
   use_frameworks!
   # Pods for Infraestructure
   pod alamofire, alamofireVersion
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    end
+  end
 end

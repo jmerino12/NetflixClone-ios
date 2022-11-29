@@ -18,7 +18,7 @@ public class MovieApiRepositoryImpl: MovieApiRepository {
     public init() {
         apiCaller = APICaller()
         let locationManager : CLLocationManager = CLLocationManager()
-        locationRepository = LocationRepositoryImpl(permissionChecker: PermissionCheckerImpl(locationManager: locationManager), locationManager: locationManager)
+        locationRepository = LocationRepositoryImpl(permissionChecker: LocationPermissionCheckerImpl(locationManager: locationManager), locationManager: locationManager)
     }
     
     public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {

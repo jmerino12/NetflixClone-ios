@@ -46,6 +46,8 @@ class MainTabBarViewController: UITabBarController {
         downloadController.navigationBar.isHidden = true
         
         
+    
+        
         setViewControllers([
             homeViewController,
             newAndPopularController,

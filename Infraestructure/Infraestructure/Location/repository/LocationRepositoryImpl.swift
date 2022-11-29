@@ -12,10 +12,10 @@ import Domain
 
 public class LocationRepositoryImpl: /*NSObject,*/ LocationRepository /*, CLLocationManagerDelegate*/ {
     
-    private let permissionChecker: PermissionChecker
+    private let permissionChecker: LocationPermissionCheckerImpl
     private let locationManager: CLLocationManager
     
-    public init(permissionChecker: PermissionChecker, locationManager: CLLocationManager) {
+    public init(permissionChecker: LocationPermissionCheckerImpl, locationManager: CLLocationManager) {
         self.permissionChecker = permissionChecker
         self.locationManager = locationManager
         //super.init()

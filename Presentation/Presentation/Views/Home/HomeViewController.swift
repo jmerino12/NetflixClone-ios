@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private var getTopRateMoviesOperation: GetTopRateMoviesOperation!
     private var getLatestMoviesOperation: GetLatestMoviesOperation!
     private var queue : OperationQueue!
-    private var permissionChecker: PermissionChecker!
+    private var permissionChecker: LocationPermissionCheckerImpl!
     private let coreLocation: CLLocationManager = CLLocationManager()
     
     // MARK: - PROPERTIES VIEW
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         table.isScrollEnabled = false
         table.backgroundColor = .white
         table.rowHeight = 200
+        table.accessibilityIdentifier = "MyMovieTable"
         table.separatorStyle = UITableViewCell.SeparatorStyle.none
         return table
     }()
