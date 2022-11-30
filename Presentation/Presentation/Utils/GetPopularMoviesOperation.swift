@@ -11,14 +11,14 @@ import Infraestructure
 
 class GetPopularMoviesOperation: Operation {
     
-    private let movieProxy: MovieProxy?
+    private let movieService: MovieService?
     private let movieTypePopularMovie = MovieType(name: "Popular Movies", id: 3)
 
     
-    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieProxy = movieProxy
+    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieService = movieService
         
-        movieProxy.getAllMovies(movieType: movieTypePopularMovie) { movie in
+        movieService.getMovie(movieType: movieTypePopularMovie) { movie in
             completion(movie)
         }
         

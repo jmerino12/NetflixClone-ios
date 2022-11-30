@@ -12,16 +12,15 @@ import Infraestructure
 
 class GetUpcomingMoviesOperation: Operation {
     
-    private var movieProxy: MovieProxy?
+    private let movieService: MovieService?
     private let movieTypeUpcoming = MovieType(name: "Upcoming", id: 1)
     
-    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieProxy = movieProxy
+    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieService = movieService
         
-        movieProxy.getAllMovies(movieType: movieTypeUpcoming) { movie in
+        movieService.getMovie(movieType: movieTypeUpcoming) { movie in
             completion(movie)
-        }
-        
+        }        
     }
     
     

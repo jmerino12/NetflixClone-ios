@@ -11,13 +11,13 @@ import Infraestructure
 
 class GetTopRateMoviesOperation: Operation {
     
-    private let movieProxy: MovieProxy?
+    private let movieService: MovieService?
     private let movieTypeTopRateMovie = MovieType(name: "Top Rate Movies", id: 2)
 
-    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieProxy = movieProxy
+    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieService = movieService
         
-        movieProxy.getAllMovies(movieType: movieTypeTopRateMovie) { movie in
+        movieService.getMovie(movieType: movieTypeTopRateMovie) { movie in
             completion(movie)
         }
         

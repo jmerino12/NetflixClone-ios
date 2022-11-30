@@ -10,13 +10,14 @@ import Domain
 import Infraestructure
 
 class GetLatestMoviesOperation: Operation {
-    private var movieProxy: MovieProxy?
+    
+    private let movieService: MovieService?
     private let movieTypeLastestMovie = MovieType(name: "Lastest", id: 4)
     
-    init(movieProxy: MovieProxy, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieProxy = movieProxy
+    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
+        self.movieService = movieService
         
-        movieProxy.getAllMovies(movieType: movieTypeLastestMovie) { movie in
+        movieService.getMovie(movieType: movieTypeLastestMovie) { movie in
             completion(movie)
         }
         

@@ -21,8 +21,9 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
     
-    
-    private var movieProxy: MovieProxy? = MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))
+    /*private var movieProxy: MovieProxy? = MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))*/
+    private var serviceMovie: MovieService?
+ 
     
     
     private var upcomingMovieOperation: GetUpcomingMoviesOperation!
@@ -78,6 +79,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        showAlertAgeUser()
         coreLocation.delegate = self
         queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -87,7 +89,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         setupScrollViewContainer()
         setContrainstsScrollViewContainer()
         AddGradient()
-        getAuthorization()
         
     }
     
@@ -164,7 +165,24 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         queue.cancelAllOperations()
-        movieProxy = nil
+        serviceMovie = nil
+    }
+    
+    func showAlertAgeUser() {
+        let alertController = UIAlertController(title: "Ingresa tú edad", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Aceptar", style: .default) { (_) in
+            if let txtField = alertController.textFields?.first, let text = txtField.text {
+                self.serviceMovie = MovieService(repository: MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: Int(text)!))
+                self.getAuthorization()
+            }
+        }
+        alertController.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+            textField.placeholder = "Ej: 18, 20"
+        }
+        alertController.addAction(confirmAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -185,30 +203,30 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             
-            getLatestMoviesOperation = GetLatestMoviesOperation(movieProxy: self.movieProxy!, completion: { movie in
+            getLatestMoviesOperation = GetLatestMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getLatestMoviesOperation)
 
         case 1:
             
-            upcomingMovieOperation = GetUpcomingMoviesOperation(movieProxy: self.movieProxy!, completion: { movie in
+            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(upcomingMovieOperation)
          
         case 2:
-            getPopularMoviesOperation = GetPopularMoviesOperation(movieProxy: self.movieProxy!, completion: { movie in
+            getPopularMoviesOperation = GetPopularMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getPopularMoviesOperation)
         case 3:
-            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieProxy: self.movieProxy!, completion: { movie in
+            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(getTopRateMoviesOperation)
         default:
-            upcomingMovieOperation = GetUpcomingMoviesOperation(movieProxy: self.movieProxy!, completion: { movie in
+            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
                 cell.configureTitles(movies: movie!)
             })
             queue.addOperation(upcomingMovieOperation)
