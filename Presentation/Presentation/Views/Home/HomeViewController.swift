@@ -176,8 +176,11 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
                 self.getAuthorization()
             }
         }
+        alertController.view.accessibilityIdentifier = "alertAge"
+        confirmAction.accessibilityIdentifier = "aceptar"
         alertController.addTextField { (textField) in
             textField.keyboardType = .numberPad
+            textField.accessibilityIdentifier = "age"
             textField.placeholder = "Ej: 18, 20"
         }
         alertController.addAction(confirmAction)

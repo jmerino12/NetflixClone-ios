@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import Domain
+@testable import Infraestructure
 
 final class MovieServiceTest: XCTestCase {
 
@@ -14,17 +15,19 @@ final class MovieServiceTest: XCTestCase {
         //Arange
         let movieLocalRepository: MovieLocalRepositoryManualMock = MovieLocalRepositoryManualMock()
         let movieApiRepository: MovieApiRepositoryManualMock = MovieApiRepositoryManualMock()
-        
-        let movieService: MovieService = MovieService(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
+        let movieProxy: MovieProxy = MovieProxy(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
+        let user : User = User(age: 18)
+        let movieService: MovieService = MovieService(repository: movieProxy, user: user)
+        let movieType = MovieType(name: "", id: 1)
         
         
         //Act
         //Assert
-        movieService.getPopularMovies(movieType: MovieType(name: "", id: 1)) { movies in
+        movieService.getMovie(movieType: movieType) { movies in
             let value = (movies != nil && !movies!.isEmpty) ? true : false
-
             XCTAssertTrue(value)
         }
+        
         
     }
     
@@ -32,16 +35,17 @@ final class MovieServiceTest: XCTestCase {
         //Arange
         let movieLocalRepository: MovieLocalRepositoryManualMock = MovieLocalRepositoryManualMock()
         let movieApiRepository: MovieApiRepositoryManualMock = MovieApiRepositoryManualMock()
-        
-        let movieService: MovieService = MovieService(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
+        let movieProxy: MovieProxy = MovieProxy(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
+        let user : User = User(age: 18)
+        let movieService: MovieService = MovieService(repository: movieProxy, user: user)
+        let movieType = MovieType(name: "", id: 0)
     
         
         //Act
         //Assert
-        if !movieLocalRepository.isEmpty(movieType:MovieType(name: "", id: 0) ) {
-            movieService.getPopularMovies(movieType: MovieType(name: "", id: 0)) { movie in
+        if !movieLocalRepository.isEmpty(movieType: movieType) {
+            movieService.getMovie(movieType: movieType) { movie in
                 let value = (movie != nil && !movie!.isEmpty) ? true : false
-
                 XCTAssertTrue(value)
             }
         }

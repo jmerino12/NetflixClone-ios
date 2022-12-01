@@ -8,21 +8,24 @@
 import Domain
 
 public class MovieLocalRepositoryManualMock: MovieLocalRepository {
-    public func getUpcomingMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
+    
+    public func getMovieFor(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
         completion(moviesInLocalStore)
     }
     
-    public func getTopRateMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        completion(moviesInLocalStore)
+    public func clearDB(movieType: Domain.MovieType) {
+        //Not implemented
     }
     
-    public func getPopularMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        completion(moviesInLocalStore)
+    public func saveDate() {
+        //Not implemented
     }
     
-    public func getLatestMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        completion(moviesInLocalStore)
+    public func isMovieSavedMoreThan24Hours() -> Bool {
+        return false
     }
+    
+
     
     public func isEmpty(movieType: Domain.MovieType) -> Bool {
         switch movieType.id {

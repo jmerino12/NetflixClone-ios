@@ -26,6 +26,20 @@ target 'Infraestructure' do
   pod alamofire, alamofireVersion
 end
 
+
+target 'Domain' do
+  project 'Domain/Domain.xcodeproj'
+  use_frameworks!
+  # Pods for Presentation
+
+
+  target 'DomainTests' do
+    # Pods for testing
+    pod alamofire, alamofireVersion
+  end
+end
+
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|

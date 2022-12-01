@@ -18,6 +18,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.accessibilityIdentifier = CollectionViewTableViewCell.identifier
         collectionView.register(PosterTableViewCell.self, forCellWithReuseIdentifier: PosterTableViewCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -62,6 +63,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterTableViewCell.identifier, for: indexPath) as? PosterTableViewCell
         cell?.movie = self.movies[indexPath.row]
+        cell?.accessibilityIdentifier = self.movies[indexPath.row].title
         cell?.loadView()
         return cell!
     }
