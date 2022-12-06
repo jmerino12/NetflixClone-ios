@@ -33,6 +33,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private var queue : OperationQueue!
     private var permissionChecker: LocationPermissionCheckerImpl!
     private let coreLocation: CLLocationManager = CLLocationManager()
+    private var alertController: UIAlertController? = nil
     
     // MARK: - PROPERTIES VIEW
     
@@ -166,26 +167,28 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         super.viewWillDisappear(animated)
         queue.cancelAllOperations()
         serviceMovie = nil
+        alertController?.dismiss(animated: true)
+        alertController = nil
     }
     
     func showAlertAgeUser() {
-        let alertController = UIAlertController(title: "Ingresa tú edad", message: nil, preferredStyle: .alert)
+        alertController = UIAlertController(title: "Ingresa tú edad", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Aceptar", style: .default) { (_) in
-            if let txtField = alertController.textFields?.first, let text = txtField.text {
+            if let txtField = self.alertController!.textFields?.first, let text = txtField.text {
                 self.serviceMovie = MovieService(repository: MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: Int(text)!))
                 self.getAuthorization()
             }
         }
-        alertController.view.accessibilityIdentifier = "alertAge"
+        alertController!.view.accessibilityIdentifier = "alertAge"
         confirmAction.accessibilityIdentifier = "aceptar"
-        alertController.addTextField { (textField) in
+        alertController!.addTextField { (textField) in
             textField.keyboardType = .numberPad
             textField.accessibilityIdentifier = "age"
             textField.placeholder = "Ej: 18, 20"
         }
-        alertController.addAction(confirmAction)
+        alertController!.addAction(confirmAction)
         
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController!, animated: true, completion: nil)
     }
 }
 
