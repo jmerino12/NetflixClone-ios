@@ -10,7 +10,11 @@ import Domain
 public class MovieLocalRepositoryManualMock: MovieLocalRepository {
     
     public func getMovieFor(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) {
-        completion(moviesInLocalStore)
+        var movies =  [Movie]()
+        for _ in 1...20 {
+            movies.append(MovieTestDataBuilder().build())
+        }
+        completion(movies)
     }
     
     public func clearDB(movieType: Domain.MovieType) {

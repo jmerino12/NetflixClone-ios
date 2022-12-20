@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import Domain
 
-public class MovieLocalRepositoryImpl: MovieLocalRepository {
+public class MovieCoreDataRepository: MovieLocalRepository {
     
     var coreData: CoreDataStack
     

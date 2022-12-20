@@ -175,7 +175,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         alertController = UIAlertController(title: "Ingresa tú edad", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Aceptar", style: .default) { (_) in
             if let txtField = self.alertController!.textFields?.first, let text = txtField.text {
-                self.serviceMovie = MovieService(repository: MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: Int(text)!))
+                self.serviceMovie = MovieService(repository: MovieProxy(movieApiRepository: MovieAlamofireRepository(), movieLocalRepository: MovieCoreDataRepository(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: Int(text)!))
                 self.getAuthorization()
             }
         }

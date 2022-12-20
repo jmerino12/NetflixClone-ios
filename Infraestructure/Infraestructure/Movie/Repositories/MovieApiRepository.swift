@@ -10,7 +10,7 @@ import CoreLocation
 import Domain
 
 
-public class MovieApiRepositoryImpl: MovieApiRepository {
+public class MovieAlamofireRepository: MovieApiRepository {
     
     private let apiCaller: APICaller
     private let locationRepository: LocationRepository

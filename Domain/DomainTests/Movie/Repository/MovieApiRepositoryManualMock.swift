@@ -9,7 +9,11 @@ import Domain
 
 public class MovieApiRepositoryManualMock: MovieApiRepository {
     public func getMovies(movieType: Domain.MovieType, completion: @escaping ([Domain.Movie]?) -> Void) throws {
-        completion(moviesInApi)
+        var movies =  [Movie]()
+        for _ in 1...20 {
+            movies.append(MovieTestDataBuilder().build())
+        }
+        completion(movies)
     }
 
 }

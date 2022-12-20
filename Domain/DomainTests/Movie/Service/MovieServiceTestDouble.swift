@@ -29,8 +29,10 @@ final class MovieServiceTestDouble: XCTestCase {
     
     func test_getMovies_fromApi_success() {
         //Arrange
+        var movies = [Domain.Movie]()
         let movieApiRepository = FakeMovieApiRepository()
-        movieApiRepository.movies = moviesInApi
+        for _ in 1...20 { movies.append(MovieTestDataBuilder().build()) }
+        movieApiRepository.movies = movies
         let movieLocalRepository = FakeMovieLocalRepository()
         let movieProxy = MovieProxy(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
         let movieService = MovieService(repository: movieProxy, user: User(age: 18))
@@ -38,15 +40,17 @@ final class MovieServiceTestDouble: XCTestCase {
         //Act
         //Assert
          movieService.getMovie(movieType: movieType) { movie in
-             XCTAssertEqual(moviesInApi.count, movie?.count)
+             XCTAssertEqual(movies.count, movie?.count)
         }
     }
     
     func test_getMovies_fromALocalStorage_success() {
         //Arrange
+        var movies = [Domain.Movie]()
         let movieApiRepository = FakeMovieApiRepository()
         let movieLocalRepository = StubMovieLocalRepository()
-        movieLocalRepository.movies = moviesInLocalStore
+        for _ in 1...20 { movies.append(MovieTestDataBuilder().build()) }
+        movieLocalRepository.movies = movies
         let movieProxy = MovieProxy(movieApiRepository: movieApiRepository, movieLocalRepository: movieLocalRepository)
         let movieService = MovieService(repository: movieProxy, user: User(age: 18))
         let movieType = MovieType(name: "", id: 1)

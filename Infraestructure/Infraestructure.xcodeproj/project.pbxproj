@@ -17,10 +17,10 @@
 		B4299019293148A200B3D015 /* MovieTypeDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4299015293148A200B3D015 /* MovieTypeDB+CoreDataProperties.swift */; };
 		B433E846291AFC1D0075DCDD /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B433E845291AFC1D0075DCDD /* Domain.framework */; };
 		B433E847291AFC1D0075DCDD /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B433E845291AFC1D0075DCDD /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B43A41E329086F1E00A877E1 /* MovieLocalRepositoyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */; };
+		B43A41E329086F1E00A877E1 /* MovieCoreDataRepositoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A41E229086F1E00A877E1 /* MovieCoreDataRepositoy.swift */; };
 		B43A41E5290870FD00A877E1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A41E4290870FD00A877E1 /* CoreDataStack.swift */; };
 		B43C7F602901FAC1005A893C /* Infraestructure.h in Headers */ = {isa = PBXBuildFile; fileRef = B43C7F5F2901FAC1005A893C /* Infraestructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B43C7F8229020F1B005A893C /* MovieApiRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */; };
+		B43C7F8229020F1B005A893C /* MovieApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F8129020F1B005A893C /* MovieApiRepository.swift */; };
 		B43C7F8829021713005A893C /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F8729021713005A893C /* ApiCaller.swift */; };
 		B4BBC51D293647EB006B29F3 /* MovieProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC51C293647EB006B29F3 /* MovieProxy.swift */; };
 		B4BBC52229366497006B29F3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC52129366497006B29F3 /* Helper.swift */; };
@@ -54,12 +54,12 @@
 		B4299014293148A200B3D015 /* MovieDB+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieDB+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B4299015293148A200B3D015 /* MovieTypeDB+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieTypeDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B433E845291AFC1D0075DCDD /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalRepositoyImpl.swift; sourceTree = "<group>"; };
+		B43A41E229086F1E00A877E1 /* MovieCoreDataRepositoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCoreDataRepositoy.swift; sourceTree = "<group>"; };
 		B43A41E4290870FD00A877E1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B43C7F5C2901FAC1005A893C /* Infraestructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Infraestructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43C7F5F2901FAC1005A893C /* Infraestructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Infraestructure.h; sourceTree = "<group>"; };
 		B43C7F6D29020AB7005A893C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepositoryImpl.swift; sourceTree = "<group>"; };
+		B43C7F8129020F1B005A893C /* MovieApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepository.swift; sourceTree = "<group>"; };
 		B43C7F832902105C005A893C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43C7F8729021713005A893C /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 		B4BBC51C293647EB006B29F3 /* MovieProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieProxy.swift; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 		B40118EF29097AEC00D86716 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				B43A41E229086F1E00A877E1 /* MovieLocalRepositoyImpl.swift */,
-				B43C7F8129020F1B005A893C /* MovieApiRepositoryImpl.swift */,
+				B43A41E229086F1E00A877E1 /* MovieCoreDataRepositoy.swift */,
+				B43C7F8129020F1B005A893C /* MovieApiRepository.swift */,
 				B4BBC51C293647EB006B29F3 /* MovieProxy.swift */,
 			);
 			path = Repositories;
@@ -350,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4BBC51D293647EB006B29F3 /* MovieProxy.swift in Sources */,
-				B43C7F8229020F1B005A893C /* MovieApiRepositoryImpl.swift in Sources */,
+				B43C7F8229020F1B005A893C /* MovieApiRepository.swift in Sources */,
 				B4FDD5C1290891D8002E3EDA /* Movie.xcdatamodeld in Sources */,
 				B4E57C032903002400D2916D /* MovieResult.swift in Sources */,
 				B4299016293148A200B3D015 /* MovieTypeDB+CoreDataClass.swift in Sources */,
@@ -362,7 +362,7 @@
 				B4299018293148A200B3D015 /* MovieDB+CoreDataClass.swift in Sources */,
 				B4299019293148A200B3D015 /* MovieTypeDB+CoreDataProperties.swift in Sources */,
 				B40CF2DB2928322100D4E97E /* LocationRepositoryImpl.swift in Sources */,
-				B43A41E329086F1E00A877E1 /* MovieLocalRepositoyImpl.swift in Sources */,
+				B43A41E329086F1E00A877E1 /* MovieCoreDataRepositoy.swift in Sources */,
 				B4E57C05290333B600D2916D /* MovieTranslator.swift in Sources */,
 				B43C7F8829021713005A893C /* ApiCaller.swift in Sources */,
 			);
