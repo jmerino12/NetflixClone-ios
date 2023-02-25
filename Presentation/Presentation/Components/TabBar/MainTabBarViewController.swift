@@ -7,6 +7,7 @@
 
 import UIKit
 import Domain
+import Infraestructure
 
 class MainTabBarViewController: UITabBarController {
     
@@ -24,7 +25,9 @@ class MainTabBarViewController: UITabBarController {
     }
     
     func configureTabBar() {
-        let homeViewController = UINavigationController(rootViewController: HomeViewController())
+        let view = HomeViewRouter.createHomeViewModule(movieService: MovieService(repository: MovieProxy(movieApiRepository: MovieAlamofireRepository(), movieLocalRepository: MovieCoreDataRepository(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: 19)))
+        
+        let homeViewController = UINavigationController(rootViewController: view)
         let newAndPopularController = UINavigationController(rootViewController: NewAndPopularViewController())
         let toLaugthViewController = UINavigationController(rootViewController: ToLaughViewController())
         let downloadController = UINavigationController(rootViewController: DownloadViewController())

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		196C97779E20011A12066715 /* Pods_Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A660B5EA3414E0BEE61204B2 /* Pods_Presentation.framework */; };
+		B417EB102976C262001FB492 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EB0F2976C262001FB492 /* HomeDataManager.swift */; };
 		B429900C2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B429900B2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift */; };
 		B433E84A291AFC280075DCDD /* Infraestructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B433E849291AFC280075DCDD /* Infraestructure.framework */; };
 		B433E84B291AFC280075DCDD /* Infraestructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B433E849291AFC280075DCDD /* Infraestructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,6 +30,10 @@
 		B4702A93290B5EF900D22946 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4702A91290B5EF900D22946 /* DetailMovieViewController.swift */; };
 		B4702A94290B5EF900D22946 /* DetailMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4702A92290B5EF900D22946 /* DetailMovieViewController.xib */; };
 		B4702A99290B610700D22946 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4702A9B290B610700D22946 /* Localizable.strings */; };
+		B487EB7F29758131003A766C /* HomeViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487EB7E29758131003A766C /* HomeViewProtocols.swift */; };
+		B487EB81297591E7003A766C /* HomeViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487EB80297591E7003A766C /* HomeViewInteractor.swift */; };
+		B487EB832975921B003A766C /* HomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487EB822975921B003A766C /* HomeViewPresenter.swift */; };
+		B487EB8529759238003A766C /* HomeViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487EB8429759238003A766C /* HomeViewRouter.swift */; };
 		B492198F2937EF7F00CB46C9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B492198E2937EF7F00CB46C9 /* HomeScreen.swift */; };
 		B49219912937F1FA00CB46C9 /* HomeScreenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49219902937F1FA00CB46C9 /* HomeScreenTest.swift */; };
 		B4951FB8291BE4DA00A27ECD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4951FB7291BE4DA00A27ECD /* Helper.swift */; };
@@ -72,6 +77,7 @@
 		99157AB26DC6C8A38547B5E3 /* Pods-Presentation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Presentation.release.xcconfig"; path = "Target Support Files/Pods-Presentation/Pods-Presentation.release.xcconfig"; sourceTree = "<group>"; };
 		A1727C91B4A727486050ACAF /* Pods_Presentation_NetflixClone_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Presentation_NetflixClone_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A660B5EA3414E0BEE61204B2 /* Pods_Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B417EB0F2976C262001FB492 /* HomeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataManager.swift; sourceTree = "<group>"; };
 		B42990072931481600B3D015 /* NetflixClone-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetflixClone-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429900B2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixClone_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B433E849291AFC280075DCDD /* Infraestructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Infraestructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +103,10 @@
 		B4702A92290B5EF900D22946 /* DetailMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailMovieViewController.xib; sourceTree = "<group>"; };
 		B4702A9A290B610700D22946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4702A9C290B611D00D22946 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B487EB7E29758131003A766C /* HomeViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProtocols.swift; sourceTree = "<group>"; };
+		B487EB80297591E7003A766C /* HomeViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewInteractor.swift; sourceTree = "<group>"; };
+		B487EB822975921B003A766C /* HomeViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewPresenter.swift; sourceTree = "<group>"; };
+		B487EB8429759238003A766C /* HomeViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRouter.swift; sourceTree = "<group>"; };
 		B492198E2937EF7F00CB46C9 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		B49219902937F1FA00CB46C9 /* HomeScreenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTest.swift; sourceTree = "<group>"; };
 		B4951FB7291BE4DA00A27ECD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -146,6 +156,11 @@
 			isa = PBXGroup;
 			children = (
 				B4702A8B290B5ECB00D22946 /* HomeViewController.swift */,
+				B487EB80297591E7003A766C /* HomeViewInteractor.swift */,
+				B487EB822975921B003A766C /* HomeViewPresenter.swift */,
+				B487EB8429759238003A766C /* HomeViewRouter.swift */,
+				B487EB7E29758131003A766C /* HomeViewProtocols.swift */,
+				B417EB0F2976C262001FB492 /* HomeDataManager.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -494,6 +509,7 @@
 				B4702A93290B5EF900D22946 /* DetailMovieViewController.swift in Sources */,
 				B4BBC06129268D900025C12C /* GetPopularMoviesOperation.swift in Sources */,
 				B4951FB8291BE4DA00A27ECD /* Helper.swift in Sources */,
+				B487EB7F29758131003A766C /* HomeViewProtocols.swift in Sources */,
 				B4BBC05F29268D0B0025C12C /* GetTopRateMoviesOperation.swift in Sources */,
 				B4702A6F290B5DB300D22946 /* MainTabBarViewController.swift in Sources */,
 				B4702A90290B5ECC00D22946 /* ToLaughViewController.swift in Sources */,
@@ -502,12 +518,16 @@
 				B4702A7C290B5DF900D22946 /* CollectionViewTableViewCell.swift in Sources */,
 				B4702A7B290B5DF900D22946 /* PosterTableViewCell.swift in Sources */,
 				B4702A8E290B5ECB00D22946 /* DownloadViewController.swift in Sources */,
+				B417EB102976C262001FB492 /* HomeDataManager.swift in Sources */,
 				B4702A5B290B5D6500D22946 /* AppDelegate.swift in Sources */,
 				B4702A80290B5E5500D22946 /* CodableBundleExtension.swift in Sources */,
+				B487EB832975921B003A766C /* HomeViewPresenter.swift in Sources */,
 				B4BBC0632926937F0025C12C /* GetLatestMoviesOperation.swift in Sources */,
 				B4702A5D290B5D6500D22946 /* SceneDelegate.swift in Sources */,
+				B487EB81297591E7003A766C /* HomeViewInteractor.swift in Sources */,
 				B4702A8F290B5ECC00D22946 /* HomeViewController.swift in Sources */,
 				B4418FA42923DCE1004F1F27 /* TestOperation.swift in Sources */,
+				B487EB8529759238003A766C /* HomeViewRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,9 +742,9 @@
 				INFOPLIST_FILE = Presentation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Netflix Clone";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -735,7 +755,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.jonathan.Presentation;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jonathan.movieapp;
 				PRODUCT_NAME = "NetflixClone-ios";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -759,9 +779,9 @@
 				INFOPLIST_FILE = Presentation/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Netflix Clone";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "NetflixClone-ios Necesita acceder a tú ubicación, para usar la app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -772,7 +792,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.jonathan.Presentation;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jonathan.movieapp;
 				PRODUCT_NAME = "NetflixClone-ios";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

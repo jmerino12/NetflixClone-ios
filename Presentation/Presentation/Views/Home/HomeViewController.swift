@@ -21,10 +21,13 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let HEIGHT_POSTER: CGFloat = 200
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
     
-    /*private var movieProxy: MovieProxy? = MovieProxy(movieApiRepository: MovieApiRepositoryImpl(), movieLocalRepository: MovieLocalRepositoryImpl(coreData: AppDelegate.sharedAppDelegate.coreDataStack))*/
     private var serviceMovie: MovieService?
  
-    
+    var presenter: HomeViewPresenterProtocol?
+    private var upcomingMovies = [Domain.Movie]()
+    private var lastedMovies = [Domain.Movie]()
+    private var popularMovies = [Domain.Movie]()
+    private var topRateMovies = [Domain.Movie]()
     
     private var upcomingMovieOperation: GetUpcomingMoviesOperation!
     private var getPopularMoviesOperation: GetPopularMoviesOperation!
@@ -90,6 +93,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         setupScrollViewContainer()
         setContrainstsScrollViewContainer()
         AddGradient()
+        presenter?.viewDidLoad()
         
     }
     
@@ -209,33 +213,18 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             
-            getLatestMoviesOperation = GetLatestMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
-                cell.configureTitles(movies: movie!)
-            })
-            queue.addOperation(getLatestMoviesOperation)
+            cell.configureTitles(movies: lastedMovies)
 
         case 1:
             
-            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
-                cell.configureTitles(movies: movie!)
-            })
-            queue.addOperation(upcomingMovieOperation)
+            cell.configureTitles(movies: upcomingMovies)
          
         case 2:
-            getPopularMoviesOperation = GetPopularMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
-                cell.configureTitles(movies: movie!)
-            })
-            queue.addOperation(getPopularMoviesOperation)
+            cell.configureTitles(movies: popularMovies)
         case 3:
-            getTopRateMoviesOperation = GetTopRateMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
-                cell.configureTitles(movies: movie!)
-            })
-            queue.addOperation(getTopRateMoviesOperation)
+            cell.configureTitles(movies: topRateMovies)
         default:
-            upcomingMovieOperation = GetUpcomingMoviesOperation(movieService: self.serviceMovie!, completion: { movie in
-                cell.configureTitles(movies: movie!)
-            })
-            queue.addOperation(upcomingMovieOperation)
+            cell.configureTitles(movies: upcomingMovies)
         }
         
        
@@ -275,4 +264,35 @@ extension HomeViewController : CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         getAuthorization()
     }
+}
+
+extension HomeViewController: HomeViewProtocol {
+
+    func presenterPushDataViewUpComingMovies(receivedData: [Domain.Movie]) {
+        upcomingMovies = receivedData
+    }
+    
+    func presenterPushDataViewPopularMovies(receivedData: [Domain.Movie]) {
+        popularMovies = receivedData
+    }
+    
+    func presenterPushDataViewLastestMovies(receivedData: [Domain.Movie]) {
+        lastedMovies = receivedData
+        
+    }
+    
+    func presenterPushDataViewTopRateMovies(receivedData: [Domain.Movie]) {
+        topRateMovies = receivedData
+    }
+    
+    
+    func loadSpinner() {
+        print("cargando")
+    }
+    
+    func stopSpinner() {
+        print("stop loading")
+    }
+    
+    
 }
