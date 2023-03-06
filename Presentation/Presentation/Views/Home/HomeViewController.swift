@@ -18,8 +18,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
     private let widthScreen = UIScreen.main.bounds.width
     private let heigthScreen = UIScreen.main.bounds.height
-    private let HEIGHT_POSTER: CGFloat = 200
-    private let HEIGHT_HEADER_SECTION: CGFloat = 40
+    static let heightPoster: CGFloat = 200
+    static let heightPosterSection: CGFloat = 40
     
     private var serviceMovie: MovieService?
     var presenter: HomeViewPresenterProtocol?
@@ -143,7 +143,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
             self.myTable.dataSource = self
             self.myTable.delegate = self
             let num = self.numberOfSections(in: self.myTable)
-            let heightAnchor = (self.HEIGHT_POSTER + self.HEIGHT_HEADER_SECTION ) * CGFloat(num)
+            let heightAnchor = (HomeViewController.heightPoster + HomeViewController.heightPosterSection ) * CGFloat(num)
             self.myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
         }
         
@@ -229,11 +229,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return HEIGHT_POSTER
+        return HomeViewController.heightPoster
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return HEIGHT_HEADER_SECTION
+        return HomeViewController.heightPosterSection
     }
     
     
