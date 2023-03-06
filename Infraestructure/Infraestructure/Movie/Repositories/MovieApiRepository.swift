@@ -81,9 +81,9 @@ public class MovieAlamofireRepository: MovieApiRepository {
                     let myDtoMovies = result?.enumerated().map { (index, element) in
                         return movieTranslator.fromApiToDomain(movie: element)
                     }
-                    DispatchQueue.main.async {
+                    
                         completion(myDtoMovies, nil)
-                    }
+                    
                 }else{
                     completion(nil, error)
                 }
@@ -101,9 +101,9 @@ public class MovieAlamofireRepository: MovieApiRepository {
                     let myDtoMovies = result?.enumerated().map { (index, element) in
                         return movieTranslator.fromApiToDomain(movie: element)
                     }
-                    DispatchQueue.main.async {
+                    
                         completion(myDtoMovies, nil)
-                    }
+                    
                 }else{
                     completion(nil, error)
                 }
@@ -121,9 +121,9 @@ public class MovieAlamofireRepository: MovieApiRepository {
                     let myDtoMovies = result?.enumerated().map { (index, element) in
                         return movieTranslator.fromApiToDomain(movie: element)
                     }
-                    DispatchQueue.main.async {
+                    
                         completion(myDtoMovies, nil)
-                    }
+                    
                 }else{
                     completion(nil, error)
                 }
