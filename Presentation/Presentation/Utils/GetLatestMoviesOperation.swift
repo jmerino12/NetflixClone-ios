@@ -11,14 +11,26 @@ import Infraestructure
 
 class GetLatestMoviesOperation: Operation {
     
-    private let movieService: MovieService?
-    private let movieTypeLastestMovie = MovieType(name: "Lastest", id: 4)
+    private let lastestMovies: Void?
     
-    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieService = movieService
+    //2
+    init(_ lastestMovies: Void?) {
+        self.lastestMovies = lastestMovies
+    }
+    
+    //3
+    override func main() {
+        //4
+        if isCancelled {
+            return
+        }
         
-        movieService.getMovie(movieType: movieTypeLastestMovie) { movie, error  in
-            completion(movie)
+        //5
+        lastestMovies
+        
+        //6
+        if isCancelled {
+            return
         }
         
     }

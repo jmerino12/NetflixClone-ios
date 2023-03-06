@@ -6,20 +6,29 @@
 //
 
 import Foundation
-import Domain
-import Infraestructure
+
 
 class GetPopularMoviesOperation: Operation {
+    private let popularMovies: Void?
     
-    private let movieService: MovieService?
-    private let movieTypePopularMovie = MovieType(name: "Popular Movies", id: 3)
-
+    //2
+    init(_ popularMovies: Void?) {
+        self.popularMovies = popularMovies
+    }
     
-    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieService = movieService
+    //3
+    override func main() {
+        //4
+        if isCancelled {
+            return
+        }
         
-        movieService.getMovie(movieType: movieTypePopularMovie) { movie, error in
-            completion(movie)
+        //5
+        popularMovies
+        
+        //6
+        if isCancelled {
+            return
         }
         
     }

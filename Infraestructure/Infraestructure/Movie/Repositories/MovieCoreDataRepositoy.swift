@@ -28,9 +28,7 @@ public class MovieCoreDataRepository: MovieLocalRepository {
             let myDomainMovies = result.enumerated().map { (index, element) in
                 return movieTranslator.fromDatabaseToDomain(moviedb: element)
             }
-            DispatchQueue.main.async {
-                completion(myDomainMovies)
-            }
+            completion(myDomainMovies)
             
         }catch {
             print("Error recuperando la data")
@@ -52,7 +50,7 @@ public class MovieCoreDataRepository: MovieLocalRepository {
         }
         return false
     }
-
+    
     
     public func getCategory(categoryName: String) -> MovieTypeDB? {
         do{
@@ -115,7 +113,7 @@ public class MovieCoreDataRepository: MovieLocalRepository {
             print(error)
             return
         }
-
+        
     }
     
     public func saveDate() {

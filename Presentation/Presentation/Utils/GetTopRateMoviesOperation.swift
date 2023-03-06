@@ -6,23 +6,31 @@
 //
 
 import UIKit
-import Domain
-import Infraestructure
 
 class GetTopRateMoviesOperation: Operation {
     
-    private let movieService: MovieService?
-    private let movieTypeTopRateMovie = MovieType(name: "Top Rate Movies", id: 2)
-
-    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieService = movieService
+    private let topRateMovies: Void?
+    
+    //2
+    init(_ topRateMovies: Void?) {
+        self.topRateMovies = topRateMovies
+    }
+    
+    //3
+    override func main() {
+        //4
+        if isCancelled {
+            return
+        }
         
-        movieService.getMovie(movieType: movieTypeTopRateMovie) { movie, error in
-            completion(movie)
+        //5
+        topRateMovies
+        
+        //6
+        if isCancelled {
+            return
         }
         
     }
-  
-    
     
 }

@@ -12,15 +12,22 @@ class HomeViewPresenter {
     weak var view: HomeViewProtocol?
     var interactor: HomeViewInteractorInputProtocol?
     var router: HomeViewRouterProtocol?
+    private var queue : OperationQueue!
 }
+
+
 
 extension HomeViewPresenter: HomeViewPresenterProtocol {
     func viewDidLoad() {
+        queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
         view?.loadSpinner()
-        interactor?.getLastestMovies()
-        interactor?.getPopularMovies()
-        interactor?.getUpcomingMovies()
-        interactor?.getTopRateMovies()
+        queue.addOperation {
+            GetPopularMoviesOperation(self.interactor?.getPopularMovies()).start()
+            GetUpcomingMoviesOperation(self.interactor?.getUpcomingMovies()).start()
+            GetLatestMoviesOperation(  self.interactor?.getLastestMovies()).start()
+            GetTopRateMoviesOperation(self.interactor?.getTopRateMovies()).start()
+        }
         view?.stopSpinner()
     }
     

@@ -27,11 +27,20 @@ public class MovieProxy: MovieRepository {
                     return
                 }
                 guard let movies = movie else { return }
-                self.movieLocalRepository.clearDB(movieType: movieType)
-                for movie in movies {
-                    self.movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType)
+                DispatchQueue.main.async {
+                    self.movieLocalRepository.clearDB(movieType: movieType)
                 }
-                self.movieLocalRepository.saveDate()
+                
+                for movie in movies {
+                    DispatchQueue.main.async {
+                        self.movieLocalRepository.saveMovies(movie: movie, typeMovie: movieType)
+                    }
+                    
+                }
+                DispatchQueue.main.async {
+                    self.movieLocalRepository.saveDate()
+                }
+                
                 completion(movie, nil)
             }
         }else {

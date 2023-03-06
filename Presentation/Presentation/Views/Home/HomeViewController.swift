@@ -33,7 +33,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private var getPopularMoviesOperation: GetPopularMoviesOperation!
     private var getTopRateMoviesOperation: GetTopRateMoviesOperation!
     private var getLatestMoviesOperation: GetLatestMoviesOperation!
-    private var queue : OperationQueue!
     private var permissionChecker: LocationPermissionCheckerImpl!
     private let coreLocation: CLLocationManager = CLLocationManager()
     private var alertController: UIAlertController? = nil
@@ -90,8 +89,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         super.viewDidLoad()
         getAuthorization()
         coreLocation.delegate = self
-        queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
         view.backgroundColor = .black
         setupScrollView()
         setContraintsScrollView()
@@ -171,7 +168,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        queue.cancelAllOperations()
         serviceMovie = nil
         alertController?.dismiss(animated: true)
         alertController = nil

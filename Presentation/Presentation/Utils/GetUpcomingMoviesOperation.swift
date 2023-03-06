@@ -6,22 +6,31 @@
 //
 
 import UIKit
-import Domain
-import Infraestructure
-
 
 class GetUpcomingMoviesOperation: Operation {
+
+  private let upcomingMovies: Void?
+  
+  //2
+  init(_ upcomingMovies: Void?) {
+    self.upcomingMovies = upcomingMovies
+  }
+  
+  //3
+  override func main() {
+    //4
+    if isCancelled {
+      return
+    }
+
+    //5
+    upcomingMovies
     
-    private let movieService: MovieService?
-    private let movieTypeUpcoming = MovieType(name: "Upcoming", id: 1)
-    
-    init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
-        self.movieService = movieService
-        
-        movieService.getMovie(movieType: movieTypeUpcoming) { movie, error in
-            completion(movie)
-        }        
+    //6
+    if isCancelled {
+      return
     }
     
-    
+  }
 }
+
