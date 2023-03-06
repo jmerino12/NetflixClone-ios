@@ -18,7 +18,7 @@ class GetPopularMoviesOperation: Operation {
     init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
         self.movieService = movieService
         
-        movieService.getMovie(movieType: movieTypePopularMovie) { movie in
+        movieService.getMovie(movieType: movieTypePopularMovie) { movie, error in
             completion(movie)
         }
         

@@ -17,7 +17,7 @@ class GetLatestMoviesOperation: Operation {
     init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
         self.movieService = movieService
         
-        movieService.getMovie(movieType: movieTypeLastestMovie) { movie in
+        movieService.getMovie(movieType: movieTypeLastestMovie) { movie, error  in
             completion(movie)
         }
         

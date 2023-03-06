@@ -61,11 +61,12 @@ class CollectionViewTableViewCell: UITableViewCell {
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterTableViewCell.identifier, for: indexPath) as? PosterTableViewCell
-        cell?.movie = self.movies[indexPath.row]
-        cell?.accessibilityIdentifier = self.movies[indexPath.row].title
-        cell?.loadView()
-        return cell!
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterTableViewCell.identifier, for: indexPath) as? PosterTableViewCell else { return UICollectionViewCell() }
+        
+        cell.movie = self.movies[indexPath.row]
+        cell.accessibilityIdentifier = self.movies[indexPath.row].title
+        cell.loadView()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

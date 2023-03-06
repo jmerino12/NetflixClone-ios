@@ -9,5 +9,5 @@ import Foundation
 
 
 public protocol MovieApiRepository {
-    func getMovies(movieType: MovieType,completion: @escaping([Movie]?)->Void) throws
+    func getMovies(movieType: MovieType,completion: @escaping([Domain.Movie]?, _ error: RuntimeError?)->Void) throws
 }

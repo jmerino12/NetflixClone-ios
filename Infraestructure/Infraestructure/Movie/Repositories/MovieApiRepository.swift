@@ -21,30 +21,30 @@ public class MovieAlamofireRepository: MovieApiRepository {
         locationRepository = LocationRepositoryImpl(permissionChecker: LocationPermissionCheckerImpl(locationManager: locationManager), locationManager: locationManager)
     }
     
-    public func getMovies(movieType: MovieType, completion: @escaping ([Domain.Movie]?) -> Void)throws -> Void
+    public func getMovies(movieType: MovieType, completion: @escaping (_ movies: [Domain.Movie]?,  _ error: RuntimeError?) -> Void)throws -> Void
     {
         switch movieType.name {
         case "Upcoming":
-            getUpcomingMovies { movie in
-                completion(movie)
+            getUpcomingMovies { movie, error in
+                completion(movie, error)
             }
             break
             
         case "Top Rate Movies":
-            getTopRateMovies { movie in
-                completion(movie)
+            getTopRateMovies { movie, error in
+                completion(movie, error)
             }
             break
             
         case "Popular Movies":
-            getPopularMovies { movie in
-                completion(movie)
+            getPopularMovies { movie, error in
+                completion(movie, error)
             }
             break
             
         case "Lastest":
-            getLatestMovies { movie in
-                completion(movie)
+            getLatestMovies { movie, error in
+                completion(movie, error)
             }
             break
         default:
@@ -54,92 +54,82 @@ public class MovieAlamofireRepository: MovieApiRepository {
     
     
     
-    public func getUpcomingMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
+    public func getUpcomingMovies(completion: @escaping (_ movies: [Domain.Movie]?,  _ error: RuntimeError?) -> Void) {
         locationRepository.findLastRegion{ region in
             let movieTranslator = MovieTranslator()
-            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&region=US") { result in
-                switch result {
-                case .none:
-                    debugPrint("Error")
-                case .some(let data):
-                    let myDtoMovies = data.enumerated().map { (index, element) in
+            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/upcoming?api_key=\(Constanst.api_key)&region=US") { success, result, error in
+                if result != nil {
+                    let myDtoMovies = result?.enumerated().map { (index, element) in
                         return movieTranslator.fromApiToDomain(movie: element)
                     }
                     DispatchQueue.main.async {
-                        completion(myDtoMovies)
+                        completion(myDtoMovies, nil)
                     }
+                }else{
+                    completion(nil, error)
+                }
+            }
+        }
+    
+    }
+    
+    public func getTopRateMovies(completion: @escaping (_ movies: [Domain.Movie]?,  _ error: RuntimeError?) -> Void) {
+        locationRepository.findLastRegion { region in
+            let movieTranslator = MovieTranslator()
+            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)&region=\(region)") { success, result, error in
+                if result != nil {
+                    let myDtoMovies = result?.enumerated().map { (index, element) in
+                        return movieTranslator.fromApiToDomain(movie: element)
+                    }
+                    DispatchQueue.main.async {
+                        completion(myDtoMovies, nil)
+                    }
+                }else{
+                    completion(nil, error)
                 }
                 
+            }
+        }
+        
+    }
+    
+    public func getPopularMovies(completion: @escaping (_ movies: [Domain.Movie]?,  _ error: RuntimeError?) -> Void) {
+        locationRepository.findLastRegion { region in
+            let movieTranslator = MovieTranslator()
+            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)&region=\(region)&page=2") { success, result, error in
+                if result != nil {
+                    let myDtoMovies = result?.enumerated().map { (index, element) in
+                        return movieTranslator.fromApiToDomain(movie: element)
+                    }
+                    DispatchQueue.main.async {
+                        completion(myDtoMovies, nil)
+                    }
+                }else{
+                    completion(nil, error)
+                }
                 
             }
-            
-            
         }
-        
         
     }
     
-    public func getTopRateMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
+    public func getLatestMovies(completion: @escaping (_ movies: [Domain.Movie]?,  _ error: RuntimeError?) -> Void) {
         locationRepository.findLastRegion { region in
             let movieTranslator = MovieTranslator()
-            print("\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)&region=\(region)")
-            self.apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/top_rated?api_key=\(Constanst.api_key)&region=\(region)") { result in
-                switch result{
-                case .success(let movies):
-                    let myDtoMovies = movies.enumerated().map { (index, element) in
+            self.apiCaller.fetchMovies(with: "\(Constanst.baseURL)/discover/movie?sort_by=popularity.desc&api_key=\(Constanst.api_key)&region=\(region)") { success, result, error in
+                if result != nil {
+                    let myDtoMovies = result?.enumerated().map { (index, element) in
                         return movieTranslator.fromApiToDomain(movie: element)
                     }
                     DispatchQueue.main.async {
-                        completion(myDtoMovies)
+                        completion(myDtoMovies, nil)
                     }
-                case .failure(let myError):
-                    print(myError)
+                }else{
+                    completion(nil, error)
                 }
+            
             }
         }
         
     }
-    
-    public func getPopularMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        locationRepository.findLastRegion { region in
-            let movieTranslator = MovieTranslator()
-            print("\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)&region=\(region)")
-            self.apiCaller.fetchData(with: "\(Constanst.baseURL)/movie/popular?api_key=\(Constanst.api_key)&region=\(region)&page=2") { result in
-                switch result{
-                case .success(let movies):
-                    let myDtoMovies = movies.enumerated().map { (index, element) in
-                        return movieTranslator.fromApiToDomain(movie: element)
-                    }
-                    DispatchQueue.main.async {
-                        completion(myDtoMovies)
-                    }
-                case .failure(let myError):
-                    print(myError)
-                }
-            }
-        }
-        
-    }
-    
-    public func getLatestMovies(completion: @escaping ([Domain.Movie]?) -> Void) {
-        locationRepository.findLastRegion { region in
-            let movieTranslator = MovieTranslator()
-            print("\(Constanst.baseURL)/discover/movie?sort_by=popularity.desc&api_key=\(Constanst.api_key)&region=\(region)")
-            self.apiCaller.fetchData(with: "\(Constanst.baseURL)/discover/movie?sort_by=popularity.desc&api_key=\(Constanst.api_key)&region=\(region)") { result in
-                switch result{
-                case .success(let movies):
-                    let myDtoMovies = movies.enumerated().map { (index, element) in
-                        return movieTranslator.fromApiToDomain(movie: element)
-                    }
-                    DispatchQueue.main.async {
-                        completion(myDtoMovies)
-                    }
-                case .failure(let myError):
-                    print(myError)
-                }
-            }
-            
-        }
-    }
-    
 }

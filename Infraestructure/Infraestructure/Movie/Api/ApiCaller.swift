@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Domain
 import Alamofire
 
 struct Constanst {
@@ -16,16 +17,16 @@ struct Constanst {
 
 public struct APICaller {
     
-   // ---------------- ALAMOFIRE----------------------------------------------------------------
+    // ---------------- ALAMOFIRE----------------------------------------------------------------
     let queue = DispatchQueue(label: "getMovies", qos: .utility, attributes: .concurrent)
-    public func fetchMovies(with urlString: String, completion: @escaping([Movie]?)->Void){
+    public func fetchMovies(with urlString: String, completion: @escaping(_ success: Bool, _ movies: [Movie]?, _ error: RuntimeError?)->Void){
         get(url: urlString) { response in
             if (response.error != nil){
-                return
+                completion(false, nil, RuntimeError(response.error?.localizedDescription ?? "Error obteniendo información"))
             }
-        
+            
             let movies = parseJSON(response.data!)
-            completion(movies)
+            completion(true, movies, nil)
         }
     }
     //------------------------------------------------------------------------------------------------
@@ -35,28 +36,7 @@ public struct APICaller {
             completion(response)
         }
     }
-
-    func fetchData(with urlString: String, completed: @escaping (Result<[Movie], Error>) -> Void){
-        if let url = URL(string: urlString){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
-                if(error != nil) {
-                    print(error ?? "")
-                    return
-                }
-                
-                if let safeData = data {
-                    if let movies = parseJSON(safeData){
-                        completed(.success(movies))
-                    }
-                }
-                
-            }
-            task.resume()
-        }
     
-    }
-
     
     func parseJSON(_ MovieData: Data) -> [Movie]? {
         let decoder = JSONDecoder()
@@ -67,7 +47,7 @@ public struct APICaller {
             print(error)
             return nil
         }
-                
+        
     }
     
 }

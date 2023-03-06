@@ -35,7 +35,7 @@ class PosterTableViewCell: UICollectionViewCell {
         imagePoster.kf.indicatorType = .activity
         imagePoster.backgroundColor = .white
         DispatchQueue.main.async {
-            self.imagePoster.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original/\(movieUrl)"), options: [
+            self.imagePoster.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w154/\(movieUrl)"), options: [
                 .transition(.fade(1)),
                 ]
             )

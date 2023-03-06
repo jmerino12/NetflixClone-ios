@@ -9,7 +9,6 @@ import Foundation
 import Domain
 
 class HomeViewPresenter {
-    // MARK: Properties
     weak var view: HomeViewProtocol?
     var interactor: HomeViewInteractorInputProtocol?
     var router: HomeViewRouterProtocol?
@@ -18,7 +17,11 @@ class HomeViewPresenter {
 extension HomeViewPresenter: HomeViewPresenterProtocol {
     func viewDidLoad() {
         view?.loadSpinner()
-        interactor?.getData()
+        interactor?.getLastestMovies()
+        interactor?.getPopularMovies()
+        interactor?.getUpcomingMovies()
+        interactor?.getTopRateMovies()
+        view?.stopSpinner()
     }
     
     func navigateToDetailView(with data: Domain.Movie) {
@@ -28,9 +31,8 @@ extension HomeViewPresenter: HomeViewPresenterProtocol {
 }
 
 extension HomeViewPresenter: HomeViewInteractorOutputProtocol {
-
+    
     func interactorPushDataPresenter(recevideData: [Domain.Movie]) {
-        view?.stopSpinner()
         view?.presenterPushDataViewUpComingMovies(receivedData: recevideData)
     }
     
@@ -46,6 +48,10 @@ extension HomeViewPresenter: HomeViewInteractorOutputProtocol {
         view?.presenterPushDataViewPopularMovies(receivedData: recevideData)
     }
     
+    func moviesFetchFailed() {
+        view?.stopSpinner()
+        view?.showError()
+    }
     
-    
+
 }

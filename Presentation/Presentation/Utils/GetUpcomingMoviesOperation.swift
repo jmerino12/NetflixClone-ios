@@ -18,7 +18,7 @@ class GetUpcomingMoviesOperation: Operation {
     init(movieService: MovieService, completion: @escaping([Domain.Movie]?)->Void) {
         self.movieService = movieService
         
-        movieService.getMovie(movieType: movieTypeUpcoming) { movie in
+        movieService.getMovie(movieType: movieTypeUpcoming) { movie, error in
             completion(movie)
         }        
     }

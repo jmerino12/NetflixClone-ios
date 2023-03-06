@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		196C97779E20011A12066715 /* Pods_Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A660B5EA3414E0BEE61204B2 /* Pods_Presentation.framework */; };
-		B417EB102976C262001FB492 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EB0F2976C262001FB492 /* HomeDataManager.swift */; };
 		B429900C2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B429900B2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift */; };
 		B433E84A291AFC280075DCDD /* Infraestructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B433E849291AFC280075DCDD /* Infraestructure.framework */; };
 		B433E84B291AFC280075DCDD /* Infraestructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B433E849291AFC280075DCDD /* Infraestructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,7 +76,6 @@
 		99157AB26DC6C8A38547B5E3 /* Pods-Presentation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Presentation.release.xcconfig"; path = "Target Support Files/Pods-Presentation/Pods-Presentation.release.xcconfig"; sourceTree = "<group>"; };
 		A1727C91B4A727486050ACAF /* Pods_Presentation_NetflixClone_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Presentation_NetflixClone_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A660B5EA3414E0BEE61204B2 /* Pods_Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B417EB0F2976C262001FB492 /* HomeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataManager.swift; sourceTree = "<group>"; };
 		B42990072931481600B3D015 /* NetflixClone-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetflixClone-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429900B2931481600B3D015 /* NetflixClone_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixClone_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B433E849291AFC280075DCDD /* Infraestructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Infraestructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +158,6 @@
 				B487EB822975921B003A766C /* HomeViewPresenter.swift */,
 				B487EB8429759238003A766C /* HomeViewRouter.swift */,
 				B487EB7E29758131003A766C /* HomeViewProtocols.swift */,
-				B417EB0F2976C262001FB492 /* HomeDataManager.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -518,7 +515,6 @@
 				B4702A7C290B5DF900D22946 /* CollectionViewTableViewCell.swift in Sources */,
 				B4702A7B290B5DF900D22946 /* PosterTableViewCell.swift in Sources */,
 				B4702A8E290B5ECB00D22946 /* DownloadViewController.swift in Sources */,
-				B417EB102976C262001FB492 /* HomeDataManager.swift in Sources */,
 				B4702A5B290B5D6500D22946 /* AppDelegate.swift in Sources */,
 				B4702A80290B5E5500D22946 /* CodableBundleExtension.swift in Sources */,
 				B487EB832975921B003A766C /* HomeViewPresenter.swift in Sources */,

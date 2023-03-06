@@ -16,13 +16,13 @@ public struct MovieService {
         self.user = user
     }
     
-    public func getMovie(movieType: MovieType , completion: @escaping ([Movie]?) -> Void) {
-        repository.getAllMovies(movieType: movieType) { movies in
+    public func getMovie(movieType: MovieType , completion: @escaping ([Movie]?, _ error: RuntimeError?) -> Void) {
+        repository.getAllMovies(movieType: movieType) { movies, error in
             var myMovies = movies
             if (!user.isAdult()){
                 myMovies?.removeAll(where: {$0.adult })
             }
-            completion(myMovies)
+            completion(myMovies, error)
         }
     }
 }

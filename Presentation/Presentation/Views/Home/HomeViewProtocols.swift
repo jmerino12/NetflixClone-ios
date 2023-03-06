@@ -19,10 +19,11 @@ protocol HomeViewProtocol: AnyObject {
     
     func loadSpinner()
     func stopSpinner()
+    func showError()
 }
 
 protocol HomeViewRouterProtocol: AnyObject {
-    // PRESENTER -> WIREFRAME
+    // PRESENTER -> ROUTER
     static func createHomeViewModule(movieService: MovieService) -> UIViewController
     
     func navigateToDetailView(from view: HomeViewProtocol, data: Movie)
@@ -41,22 +42,23 @@ protocol HomeViewPresenterProtocol: AnyObject {
 protocol HomeViewInteractorOutputProtocol: AnyObject {
 // INTERACTOR -> PRESENTER
     func interactorPushDataPresenter(recevideData: [Movie])
-    
     func interactorPushLastestMovie(recevideData: [Movie])
     func interactorPushTopRateMovie(recevideData: [Movie])
     func interactorPushPopularMovie(recevideData: [Movie])
-    
+    func moviesFetchFailed()
 }
 
 protocol HomeViewInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: HomeViewInteractorOutputProtocol? { get set }
-    var datamanger: HomeViewDataManagerInputProtocol? { get set }
     
-    func getData()
+    func getUpcomingMovies()
+    func getTopRateMovies()
+    func getPopularMovies()
+    func getLastestMovies()
 }
 
-protocol HomeViewDataManagerInputProtocol: AnyObject {
+/*protocol HomeViewDataManagerInputProtocol: AnyObject {
     var dataManager: HomeViewDataManagerOutputProtocol? { get set}
     // Obtener peliclas
     func getUpcomingMovies()
@@ -71,4 +73,4 @@ protocol HomeViewDataManagerOutputProtocol: AnyObject {
     func getLastestMoviesManager(with movies: [Movie])
     func getTopRateMoviesManager(with movies: [Movie])
     
-}
+}*/

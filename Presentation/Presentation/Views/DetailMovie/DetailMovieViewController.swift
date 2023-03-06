@@ -43,6 +43,7 @@ class DetailMovieViewController: UIViewController {
         )
         posterImage.image = UIImage(named: movie?.backdrop_path ?? "")
     }
+    
     /*
     // MARK: - Navigation
 

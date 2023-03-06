@@ -22,8 +22,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     private let HEIGHT_HEADER_SECTION: CGFloat = 40
     
     private var serviceMovie: MovieService?
- 
     var presenter: HomeViewPresenterProtocol?
+    
     private var upcomingMovies = [Domain.Movie]()
     private var lastedMovies = [Domain.Movie]()
     private var popularMovies = [Domain.Movie]()
@@ -77,13 +77,18 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         return table
     }()
     
+    let myAlert : UIAlertController = {
+        let alert = UIAlertController(title: "Error", message: "Problem Fetching movies", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler : nil))
+        return alert
+    }()
+    
     let sectionTitle:  [String] = ["lastetMovie".localized(tableName: "Localizable"), "upcoming".localized(tableName: "Localizable"), "popular".localized(tableName: "Localizable"), "topRate".localized(tableName: "Localizable")]
-
- 
+    
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        showAlertAgeUser()
+        getAuthorization()
         coreLocation.delegate = self
         queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -93,8 +98,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         setupScrollViewContainer()
         setContrainstsScrollViewContainer()
         AddGradient()
-        presenter?.viewDidLoad()
-        
     }
     
     
@@ -103,6 +106,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
             coreLocation.requestAlwaysAuthorization()
         }else {
             setupTableView()
+            presenter?.viewDidLoad()
         }
     }
     
@@ -122,7 +126,7 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         scrollView.addSubview(scrollContainer)
         scrollContainer.addArrangedSubview(imageHeader)
         scrollContainer.addArrangedSubview(myTable)
-
+        
     }
     
     func setContrainstsScrollViewContainer(){
@@ -142,10 +146,10 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
             let heightAnchor = (self.HEIGHT_POSTER + self.HEIGHT_HEADER_SECTION ) * CGFloat(num)
             self.myTable.heightAnchor.constraint(equalToConstant: heightAnchor).isActive = true
         }
-
+        
     }
     
-
+    
     func AddGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -157,10 +161,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     }
     
     func navigateToDetail(movie: Domain.Movie?) {
-        let detailScreen = DetailMovieViewController()
-        detailScreen.movie = movie
-        detailScreen.modalPresentationStyle = .popover
-        self.present(detailScreen, animated: true, completion: nil)
+        guard let myMovie = movie else { return }
+        presenter?.navigateToDetailView(with: myMovie)
     }
     
     override func viewDidLayoutSubviews() {
@@ -212,13 +214,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = true
         switch indexPath.section {
         case 0:
-            
             cell.configureTitles(movies: lastedMovies)
-
         case 1:
-            
             cell.configureTitles(movies: upcomingMovies)
-         
         case 2:
             cell.configureTitles(movies: popularMovies)
         case 3:
@@ -227,7 +225,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureTitles(movies: upcomingMovies)
         }
         
-       
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -267,7 +265,7 @@ extension HomeViewController : CLLocationManagerDelegate {
 }
 
 extension HomeViewController: HomeViewProtocol {
-
+    
     func presenterPushDataViewUpComingMovies(receivedData: [Domain.Movie]) {
         upcomingMovies = receivedData
     }
@@ -278,13 +276,14 @@ extension HomeViewController: HomeViewProtocol {
     
     func presenterPushDataViewLastestMovies(receivedData: [Domain.Movie]) {
         lastedMovies = receivedData
-        
     }
     
     func presenterPushDataViewTopRateMovies(receivedData: [Domain.Movie]) {
         topRateMovies = receivedData
+        DispatchQueue.main.async {
+            self.myTable.reloadData()
+        }
     }
-    
     
     func loadSpinner() {
         print("cargando")
@@ -292,7 +291,18 @@ extension HomeViewController: HomeViewProtocol {
     
     func stopSpinner() {
         print("stop loading")
+        DispatchQueue.main.async {
+            self.myTable.reloadData()
+        }
     }
     
-    
+    func showError() {
+        DispatchQueue.main.async {
+            if (!self.myAlert.isBeingPresented && !self.myAlert.isViewLoaded){
+                self.present(self.myAlert, animated: true, completion: nil)
+            }
+            
+        }
+
+    }
 }

@@ -20,6 +20,7 @@
 		B43C7F7A29020B03005A893C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F7929020B03005A893C /* Movie.swift */; };
 		B43C7F7E29020D10005A893C /* MovieApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F7D29020D10005A893C /* MovieApiRepository.swift */; };
 		B43C7F8029020D55005A893C /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C7F7F29020D55005A893C /* MovieService.swift */; };
+		B452C38029B61781007FE158 /* RuntimeException.swift in Sources */ = {isa = PBXBuildFile; fileRef = B452C37F29B61781007FE158 /* RuntimeException.swift */; };
 		B47FF20E294CA54100D55E01 /* MovieTestDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FF20D294CA54100D55E01 /* MovieTestDataBuilder.swift */; };
 		B4BBC51F29364B22006B29F3 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC51E29364B22006B29F3 /* MovieRepository.swift */; };
 		B4BBC52529369263006B29F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC52429369263006B29F3 /* User.swift */; };
@@ -60,6 +61,7 @@
 		B43C7F7929020B03005A893C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		B43C7F7D29020D10005A893C /* MovieApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiRepository.swift; sourceTree = "<group>"; };
 		B43C7F7F29020D55005A893C /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		B452C37F29B61781007FE158 /* RuntimeException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeException.swift; sourceTree = "<group>"; };
 		B47FF20D294CA54100D55E01 /* MovieTestDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTestDataBuilder.swift; sourceTree = "<group>"; };
 		B4BBC51E29364B22006B29F3 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		B4BBC52429369263006B29F3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		B43C7F4A2901FAA6005A893C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B452C37E29B61767007FE158 /* Expcetions */,
 				B4BBC52329369241006B29F3 /* User */,
 				B43C7F4B2901FAA6005A893C /* Domain.h */,
 				B40CF2D42928316E00D4E97E /* Location */,
@@ -219,6 +222,14 @@
 				B40118EC290978DB00D86716 /* Service */,
 			);
 			path = Movie;
+			sourceTree = "<group>";
+		};
+		B452C37E29B61767007FE158 /* Expcetions */ = {
+			isa = PBXGroup;
+			children = (
+				B452C37F29B61781007FE158 /* RuntimeException.swift */,
+			);
+			path = Expcetions;
 			sourceTree = "<group>";
 		};
 		B4BBC52329369241006B29F3 /* User */ = {
@@ -451,6 +462,7 @@
 				B43A41E129086E9300A877E1 /* MovieLocalRepository.swift in Sources */,
 				B40CF2D7292831B800D4E97E /* LocationRepository.swift in Sources */,
 				B40CF2DE292833BD00D4E97E /* LocationPermissionChecker.swift in Sources */,
+				B452C38029B61781007FE158 /* RuntimeException.swift in Sources */,
 				B43C7F8029020D55005A893C /* MovieService.swift in Sources */,
 				B4BBC52529369263006B29F3 /* User.swift in Sources */,
 				B43C7F7A29020B03005A893C /* Movie.swift in Sources */,
