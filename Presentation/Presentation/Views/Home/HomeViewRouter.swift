@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Domain
 
-class HomeViewRouter: HomeViewRouterProtocol {
+class HomeViewRouter {
     
     static func createHomeViewModule(movieService: MovieService) -> UIViewController {
         let view = HomeViewController()
@@ -27,6 +27,11 @@ class HomeViewRouter: HomeViewRouterProtocol {
             
         return view
     }
+
+    
+}
+
+extension HomeViewRouter: HomeViewRouterProtocol {
     
     func navigateToDetailView(from view: HomeViewProtocol, data: Domain.Movie) {
         if let view = view as? UIViewController {
@@ -36,6 +41,4 @@ class HomeViewRouter: HomeViewRouterProtocol {
             view.present(detailScreen, animated: true)
         }
     }
-    
-    
 }

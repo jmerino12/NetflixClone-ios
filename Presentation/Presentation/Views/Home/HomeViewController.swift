@@ -16,18 +16,18 @@ protocol NavigationToDetailProtocol {
 
 class HomeViewController: UIViewController, NavigationToDetailProtocol {
     
-    private let widthScreen = UIScreen.main.bounds.width
-    private let heigthScreen = UIScreen.main.bounds.height
+    let widthScreen = UIScreen.main.bounds.width
+    let heigthScreen = UIScreen.main.bounds.height
     static let heightPoster: CGFloat = 200
     static let heightPosterSection: CGFloat = 40
     
     private var serviceMovie: MovieService?
     var presenter: HomeViewPresenterProtocol?
     
-    private var upcomingMovies = [Domain.Movie]()
-    private var lastedMovies = [Domain.Movie]()
-    private var popularMovies = [Domain.Movie]()
-    private var topRateMovies = [Domain.Movie]()
+    var upcomingMovies = [Domain.Movie]()
+    var lastedMovies = [Domain.Movie]()
+    var popularMovies = [Domain.Movie]()
+    var topRateMovies = [Domain.Movie]()
     
     private var upcomingMovieOperation: GetUpcomingMoviesOperation!
     private var getPopularMoviesOperation: GetPopularMoviesOperation!
@@ -88,13 +88,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAuthorization()
+        setupView()
         coreLocation.delegate = self
-        view.backgroundColor = .black
-        setupScrollView()
-        setContraintsScrollView()
-        setupScrollViewContainer()
-        setContrainstsScrollViewContainer()
-        AddGradient()
     }
     
     
@@ -105,33 +100,6 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
             setupTableView()
             presenter?.viewDidLoad()
         }
-    }
-    
-    
-    func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    func setContraintsScrollView() {
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-    }
-    
-    func setupScrollViewContainer() {
-        scrollView.addSubview(scrollContainer)
-        scrollContainer.addArrangedSubview(imageHeader)
-        scrollContainer.addArrangedSubview(myTable)
-        
-    }
-    
-    func setContrainstsScrollViewContainer(){
-        scrollContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        scrollContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant:  -90).isActive = true
-        scrollContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        scrollContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
     
     func setupTableView() {
@@ -145,25 +113,10 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         }
         
     }
-    
-    
-    func AddGradient() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            UIColor.clear.cgColor,
-            UIColor.black.cgColor
-        ]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: widthScreen, height: heigthScreen / 1.5)
-        imageHeader.layer.addSublayer(gradientLayer)
-    }
-    
+
     func navigateToDetail(movie: Domain.Movie?) {
         guard let myMovie = movie else { return }
         presenter?.navigateToDetailView(with: myMovie)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -173,92 +126,8 @@ class HomeViewController: UIViewController, NavigationToDetailProtocol {
         alertController = nil
     }
     
-    func showAlertAgeUser() {
-        alertController = UIAlertController(title: "Ingresa tú edad", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Aceptar", style: .default) { (_) in
-            if let txtField = self.alertController!.textFields?.first, let text = txtField.text {
-                self.serviceMovie = MovieService(repository: MovieProxy(movieApiRepository: MovieAlamofireRepository(), movieLocalRepository: MovieCoreDataRepository(coreData: AppDelegate.sharedAppDelegate.coreDataStack)), user: User(age: Int(text)!))
-                self.getAuthorization()
-            }
-        }
-        alertController!.view.accessibilityIdentifier = "alertAge"
-        confirmAction.accessibilityIdentifier = "aceptar"
-        alertController!.addTextField { (textField) in
-            textField.keyboardType = .numberPad
-            textField.accessibilityIdentifier = "age"
-            textField.placeholder = "Ej: 18, 20"
-        }
-        alertController!.addAction(confirmAction)
-        
-        self.present(alertController!, animated: true, completion: nil)
-    }
 }
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitle.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
-        cell.delegate = self
-        cell.clipsToBounds = true
-        switch indexPath.section {
-        case 0:
-            cell.configureTitles(movies: lastedMovies)
-        case 1:
-            cell.configureTitles(movies: upcomingMovies)
-        case 2:
-            cell.configureTitles(movies: popularMovies)
-        case 3:
-            cell.configureTitles(movies: topRateMovies)
-        default:
-            cell.configureTitles(movies: upcomingMovies)
-        }
-        
-        
-        return cell
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return HomeViewController.heightPoster
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return HomeViewController.heightPosterSection
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitle[section]
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        header.contentView.backgroundColor = .black
-        header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
-        header.textLabel?.textColor = .white
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-}
-
-extension HomeViewController : CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        getAuthorization()
-    }
-}
 
 extension HomeViewController: HomeViewProtocol {
     

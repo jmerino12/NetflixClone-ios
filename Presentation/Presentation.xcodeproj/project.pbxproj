@@ -42,6 +42,9 @@
 		B4BBC06129268D900025C12C /* GetPopularMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC06029268D900025C12C /* GetPopularMoviesOperation.swift */; };
 		B4BBC0632926937F0025C12C /* GetLatestMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BBC0622926937F0025C12C /* GetLatestMoviesOperation.swift */; };
 		B4BCCDBF292517AE00D1A334 /* GetUpcomingMoviesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCCDBE292517AE00D1A334 /* GetUpcomingMoviesOperation.swift */; };
+		B4E9A10A29B68BBA002BCFDF /* BuildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9A10929B68BBA002BCFDF /* BuildView.swift */; };
+		B4E9A10C29B68DB3002BCFDF /* HomeViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9A10B29B68DB3002BCFDF /* HomeViewSetup.swift */; };
+		B4E9A10F29B68E4E002BCFDF /* HomeViewDataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9A10E29B68E4E002BCFDF /* HomeViewDataTable.swift */; };
 		C0A587DF84DF9DF4EB4EEF4C /* Pods_Presentation_NetflixClone_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1727C91B4A727486050ACAF /* Pods_Presentation_NetflixClone_iosUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +118,9 @@
 		B4BBC06029268D900025C12C /* GetPopularMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularMoviesOperation.swift; sourceTree = "<group>"; };
 		B4BBC0622926937F0025C12C /* GetLatestMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestMoviesOperation.swift; sourceTree = "<group>"; };
 		B4BCCDBE292517AE00D1A334 /* GetUpcomingMoviesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUpcomingMoviesOperation.swift; sourceTree = "<group>"; };
+		B4E9A10929B68BBA002BCFDF /* BuildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildView.swift; sourceTree = "<group>"; };
+		B4E9A10B29B68DB3002BCFDF /* HomeViewSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSetup.swift; sourceTree = "<group>"; };
+		B4E9A10E29B68E4E002BCFDF /* HomeViewDataTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataTable.swift; sourceTree = "<group>"; };
 		D2C0B90B90C6B61D60DB17D6 /* Pods-Presentation-NetflixClone-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Presentation-NetflixClone-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-Presentation-NetflixClone-iosUITests/Pods-Presentation-NetflixClone-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,7 @@
 		B4418FA929241C2D004F1F27 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9A10D29B68E31002BCFDF /* Interface */,
 				B4702A8B290B5ECB00D22946 /* HomeViewController.swift */,
 				B487EB80297591E7003A766C /* HomeViewInteractor.swift */,
 				B487EB822975921B003A766C /* HomeViewPresenter.swift */,
@@ -229,6 +236,7 @@
 		B4702A59290B5D6500D22946 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9A10829B68BAA002BCFDF /* Shared */,
 				B4702A78290B5DDD00D22946 /* Components */,
 				B4702A7D290B5E0C00D22946 /* Utils */,
 				B4702A84290B5E8800D22946 /* Views */,
@@ -288,6 +296,23 @@
 				B4418FAB29241C53004F1F27 /* Download */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B4E9A10829B68BAA002BCFDF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9A10929B68BBA002BCFDF /* BuildView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B4E9A10D29B68E31002BCFDF /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9A10B29B68DB3002BCFDF /* HomeViewSetup.swift */,
+				B4E9A10E29B68E4E002BCFDF /* HomeViewDataTable.swift */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		BC3D4AE5CB0BB02397ACBE1B /* Pods */ = {
@@ -503,11 +528,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E9A10F29B68E4E002BCFDF /* HomeViewDataTable.swift in Sources */,
 				B4702A93290B5EF900D22946 /* DetailMovieViewController.swift in Sources */,
 				B4BBC06129268D900025C12C /* GetPopularMoviesOperation.swift in Sources */,
 				B4951FB8291BE4DA00A27ECD /* Helper.swift in Sources */,
 				B487EB7F29758131003A766C /* HomeViewProtocols.swift in Sources */,
 				B4BBC05F29268D0B0025C12C /* GetTopRateMoviesOperation.swift in Sources */,
+				B4E9A10C29B68DB3002BCFDF /* HomeViewSetup.swift in Sources */,
 				B4702A6F290B5DB300D22946 /* MainTabBarViewController.swift in Sources */,
 				B4702A90290B5ECC00D22946 /* ToLaughViewController.swift in Sources */,
 				B4BCCDBF292517AE00D1A334 /* GetUpcomingMoviesOperation.swift in Sources */,
@@ -524,6 +551,7 @@
 				B4702A8F290B5ECC00D22946 /* HomeViewController.swift in Sources */,
 				B4418FA42923DCE1004F1F27 /* TestOperation.swift in Sources */,
 				B487EB8529759238003A766C /* HomeViewRouter.swift in Sources */,
+				B4E9A10A29B68BBA002BCFDF /* BuildView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
