@@ -25,7 +25,7 @@ extension HomeViewPresenter: HomeViewPresenterProtocol {
         queue.addOperation {
             GetPopularMoviesOperation(self.interactor?.getPopularMovies()).start()
             GetUpcomingMoviesOperation(self.interactor?.getUpcomingMovies()).start()
-            GetLatestMoviesOperation(  self.interactor?.getLastestMovies()).start()
+            GetLatestMoviesOperation(self.interactor?.getLastestMovies()).start()
             GetTopRateMoviesOperation(self.interactor?.getTopRateMovies()).start()
         }
         view?.stopSpinner()
